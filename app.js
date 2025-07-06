@@ -1,354 +1,214 @@
-// Community Feed Demo
+// Professional RackMap Interactive Experience
 document.addEventListener('DOMContentLoaded', function() {
-    const demoButton = document.getElementById('demoButton');
-    const huntFeed = document.getElementById('huntFeed');
-    const areaActivity = document.getElementById('areaActivity');
-    const feedCards = document.querySelectorAll('.feed-card');
-    const ctaSection = document.getElementById('ctaSection');
-    const interactiveMap = document.getElementById('interactiveMap');
-    const activityPopup = document.getElementById('activityPopup');
+    // Initialize sophisticated map interactions
+    initializeMapVisualization();
+    initializeDataUpdates();
+    initializeFeedAnimations();
     
-    let isAnimating = false;
-    
-    function startCommunityDemo() {
-        if (isAnimating) return;
-        isAnimating = true;
+    // Map Visualization System
+    function initializeMapVisualization() {
+        const huntingUnits = document.querySelectorAll('.hunting-unit');
+        const unitInfoPanel = document.getElementById('unitInfoPanel');
         
-        // Reset all states
-        resetDemo();
+        // Unit data
+        const unitData = {
+            '1': { name: 'Western Badlands', activity: 65, photos: 28, peak: '6-8 AM', species: 'Mule Deer' },
+            '3A': { name: 'Little Missouri', activity: 45, photos: 19, peak: '5-7 AM', species: 'Whitetail' },
+            '3B': { name: 'South Badlands', activity: 72, photos: 34, peak: '5-7 AM', species: 'Whitetail' },
+            '2A': { name: 'Central Plains', activity: 85, photos: 42, peak: '5-7 AM', species: 'Whitetail' },
+            '2B': { name: 'North Central', activity: 58, photos: 31, peak: '6-8 AM', species: 'Whitetail' },
+            '2G': { name: 'Red River Valley', activity: 78, photos: 38, peak: '5-8 AM', species: 'Whitetail' }
+        };
         
-        // Show area activity first
-        setTimeout(() => {
-            areaActivity.classList.add('show');
-            startMapInteractions();
-        }, 500);
-        
-        // Show feed cards one by one
-        setTimeout(() => {
-            feedCards[0].classList.add('show');
-        }, 1000);
-        
-        setTimeout(() => {
-            feedCards[1].classList.add('show');
-        }, 1500);
-        
-        setTimeout(() => {
-            feedCards[2].classList.add('show');
-        }, 2000);
-        
-        // Show CTA after all content is visible
-        setTimeout(() => {
-            showCTA();
-        }, 3000);
-        
-        // Don't auto reset - keep content visible
-        setTimeout(() => {
-            isAnimating = false;
-        }, 4000);
-    }
-    
-    function animateFeatures() {
-        const featureItems = document.querySelectorAll('.feature-item');
-        featureItems.forEach((item, index) => {
-            setTimeout(() => {
-                item.style.opacity = '0';
-                item.style.transform = 'translateX(-20px)';
-                item.style.transition = 'all 0.4s ease';
+        huntingUnits.forEach(unit => {
+            unit.addEventListener('mouseenter', function() {
+                const unitId = this.getAttribute('data-unit');
+                const data = unitData[unitId];
                 
-                setTimeout(() => {
-                    item.style.opacity = '1';
-                    item.style.transform = 'translateX(0)';
-                }, 100);
-            }, index * 150);
-        });
-    }
-    
-    function showCTA() {
-        ctaSection.style.opacity = '0';
-        ctaSection.style.transform = 'translateY(20px)';
-        ctaSection.style.transition = 'all 0.6s ease-out';
-        
-        setTimeout(() => {
-            ctaSection.style.opacity = '1';
-            ctaSection.style.transform = 'translateY(0)';
-        }, 100);
-    }
-    
-    function resetDemo() {
-        // Only reset if not already showing content
-        if (!areaActivity.classList.contains('show')) {
-            feedCards.forEach(card => {
-                card.classList.remove('show');
+                if (data) {
+                    updateUnitInfoPanel(unitId, data);
+                }
             });
-            areaActivity.classList.remove('show');
-        }
-    }
-    
-    // Advanced Map Interactions
-    function startMapInteractions() {
-        // Simulate GPS tracking with dynamic coordinates
-        animateGPSTracking();
-        
-        // Interactive popup system
-        setupMapClickHandlers();
-        
-        // Dynamic hotspot intensity based on activity
-        simulateActivityData();
-        
-        // Parallax effect on scroll
-        if (typeof window !== 'undefined') {
-            setupParallaxEffect();
-        }
-    }
-    
-    function animateGPSTracking() {
-        const gpsDots = document.querySelectorAll('.gps-dot');
-        
-        gpsDots.forEach((dot, index) => {
-            // Create trail effect
-            setInterval(() => {
-                createGPSTrail(dot);
-            }, 2000 + (index * 500));
             
-            // Simulate movement with micro-animations
-            simulateGPSMovement(dot, index);
+            unit.addEventListener('click', function() {
+                const unitId = this.getAttribute('data-unit');
+                console.log(`Unit ${unitId} selected for detailed view`);
+            });
         });
+        
+        function updateUnitInfoPanel(unitId, data) {
+            unitInfoPanel.querySelector('h4').textContent = `Unit ${unitId} - ${data.name}`;
+            unitInfoPanel.querySelector('.activity-fill').style.width = `${data.activity}%`;
+            
+            const metrics = unitInfoPanel.querySelectorAll('.metric-item .value');
+            metrics[0].textContent = data.photos;
+            metrics[1].textContent = data.peak;
+            metrics[2].textContent = data.species;
+            
+            unitInfoPanel.style.opacity = '1';
+            unitInfoPanel.style.transform = 'translateY(0)';
+        }
     }
     
-    function createGPSTrail(dot) {
-        const trail = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-        const cx = dot.getAttribute('cx');
-        const cy = dot.getAttribute('cy');
+    // Real-time Data Updates
+    function initializeDataUpdates() {
+        const activeHunters = document.getElementById('activeHunters');
+        const photosShared = document.getElementById('photosShared');
         
-        trail.setAttribute('cx', cx);
-        trail.setAttribute('cy', cy);
-        trail.setAttribute('r', '3');
-        trail.setAttribute('fill', 'none');
-        trail.setAttribute('stroke', '#00ff88');
-        trail.setAttribute('stroke-width', '1');
-        trail.setAttribute('opacity', '0.8');
-        trail.style.animation = 'trailExpand 2s ease-out forwards';
+        // Simulate real-time data updates
+        let hunterCount = 247;
+        let photoCount = 1842;
         
-        dot.parentNode.insertBefore(trail, dot);
-        
-        setTimeout(() => {
-            if (trail.parentNode) {
-                trail.parentNode.removeChild(trail);
+        setInterval(() => {
+            // Random fluctuation in active hunters
+            const hunterChange = Math.floor(Math.random() * 10) - 5;
+            hunterCount = Math.max(200, Math.min(300, hunterCount + hunterChange));
+            
+            if (activeHunters) {
+                animateNumber(activeHunters, hunterCount);
             }
-        }, 2000);
-    }
-    
-    function simulateGPSMovement(dot, index) {
-        const originalCx = parseFloat(dot.getAttribute('cx'));
-        const originalCy = parseFloat(dot.getAttribute('cy'));
-        let phase = 0;
-        
-        setInterval(() => {
-            phase += 0.1;
-            const offsetX = Math.sin(phase + index) * 2;
-            const offsetY = Math.cos(phase + index * 0.7) * 1.5;
             
-            dot.setAttribute('cx', originalCx + offsetX);
-            dot.setAttribute('cy', originalCy + offsetY);
-        }, 100);
-    }
-    
-    function setupMapClickHandlers() {
-        const hotspots = document.querySelectorAll('.hotspot');
-        const popupData = [
-            { unit: 'Unit 3B2', user: 'BuckHunter47', activity: 'Trail cam activity', time: '2 hours ago' },
-            { unit: 'Unit 2K1', user: 'OutdoorQueen', activity: 'Recent sighting', time: '4 hours ago' },
-            { unit: 'Unit 1A1', user: 'TrailWatcher', activity: 'Photo uploaded', time: '6 hours ago' }
-        ];
-        
-        hotspots.forEach((hotspot, index) => {
-            // Create invisible clickable area
-            const clickArea = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-            clickArea.setAttribute('cx', hotspot.getAttribute('cx'));
-            clickArea.setAttribute('cy', hotspot.getAttribute('cy'));
-            clickArea.setAttribute('r', '20');
-            clickArea.setAttribute('fill', 'transparent');
-            clickArea.style.cursor = 'pointer';
-            clickArea.style.pointerEvents = 'all';
-            
-            hotspot.parentNode.insertBefore(clickArea, hotspot);
-            
-            clickArea.addEventListener('click', () => {
-                showActivityPopup(popupData[index], hotspot);
-            });
-            
-            // Auto-show popup after delay
-            setTimeout(() => {
-                if (index === 0) { // Show first popup automatically
-                    showActivityPopup(popupData[index], hotspot);
-                    
-                    setTimeout(() => {
-                        hideActivityPopup();
-                    }, 3000);
+            // Increment photos occasionally
+            if (Math.random() > 0.7) {
+                photoCount += Math.floor(Math.random() * 3) + 1;
+                if (photosShared) {
+                    animateNumber(photosShared, photoCount, true);
                 }
-            }, 2000);
-        });
-    }
-    
-    function showActivityPopup(data, hotspot) {
-        const popup = document.getElementById('activityPopup');
-        const cx = parseFloat(hotspot.getAttribute('cx'));
-        const cy = parseFloat(hotspot.getAttribute('cy'));
-        
-        // Update popup content
-        popup.querySelector('.unit-name').textContent = data.unit;
-        popup.querySelector('.activity-time').textContent = data.time;
-        popup.querySelector('.hunter-username').textContent = data.user;
-        popup.querySelector('.activity-type').textContent = data.activity;
-        
-        // Position popup relative to hotspot
-        popup.style.left = `${(cx / 300) * 100}%`;
-        popup.style.top = `${(cy / 200) * 100}%`;
-        
-        popup.classList.add('show');
-    }
-    
-    function hideActivityPopup() {
-        const popup = document.getElementById('activityPopup');
-        popup.classList.remove('show');
-    }
-    
-    function simulateActivityData() {
-        const hotspots = document.querySelectorAll('.hotspot');
-        
-        setInterval(() => {
-            hotspots.forEach((hotspot, index) => {
-                // Randomly intensify hotspots
-                if (Math.random() > 0.7) {
-                    hotspot.style.animation = 'hotspotIntense 1s ease-in-out';
-                    setTimeout(() => {
-                        hotspot.style.animation = `hotspotPulse 3s infinite ease-in-out`;
-                        hotspot.style.animationDelay = `${index}s`;
-                    }, 1000);
-                }
-            });
+            }
         }, 5000);
     }
     
-    function setupParallaxEffect() {
-        let ticking = false;
+    // Number animation helper
+    function animateNumber(element, target, formatK = false) {
+        const current = parseInt(element.textContent.replace(/[^0-9]/g, ''));
+        const increment = (target - current) / 20;
+        let step = 0;
         
-        function updateParallax() {
-            const scrolled = window.pageYOffset;
-            const mapElement = document.querySelector('.interactive-map');
+        const timer = setInterval(() => {
+            step++;
+            const value = Math.round(current + (increment * step));
             
-            if (mapElement) {
-                const rect = mapElement.getBoundingClientRect();
-                const inView = rect.top < window.innerHeight && rect.bottom > 0;
-                
-                if (inView) {
-                    const parallaxSpeed = scrolled * 0.1;
-                    const radarSweep = document.querySelector('.radar-sweep');
-                    
-                    if (radarSweep) {
-                        radarSweep.style.transform = `rotate(${parallaxSpeed % 360}deg)`;
-                    }
+            if (formatK && value > 999) {
+                element.textContent = (value / 1000).toFixed(1) + 'K';
+            } else {
+                element.textContent = value;
+            }
+            
+            if (step >= 20) {
+                clearInterval(timer);
+                if (formatK && target > 999) {
+                    element.textContent = (target / 1000).toFixed(1) + 'K';
+                } else {
+                    element.textContent = target;
                 }
             }
-            ticking = false;
+        }, 50);
+    }
+    
+    // Feed Animations
+    function initializeFeedAnimations() {
+        const feedCards = document.querySelectorAll('.feed-card');
+        const observerOptions = {
+            threshold: 0.3,
+            rootMargin: '0px 0px -100px 0px'
+        };
+        
+        const feedObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.classList.add('visible');
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }, index * 150);
+                }
+            });
+        }, observerOptions);
+        
+        feedCards.forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+            feedObserver.observe(card);
+        });
+        
+        // Add sophisticated hover effects
+        feedCards.forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-2px)';
+                this.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.2)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+                this.style.boxShadow = 'none';
+            });
+        });
+    }
+    
+    // CTA Button Enhancement
+    const ctaButton = document.querySelector('.cta-button');
+    if (ctaButton) {
+        ctaButton.addEventListener('mouseenter', function() {
+            this.style.transform = 'scale(1.05)';
+        });
+        
+        ctaButton.addEventListener('mouseleave', function() {
+            this.style.transform = 'scale(1)';
+        });
+    }
+    
+    // Demo Button
+    const demoButton = document.getElementById('demoButton');
+    if (demoButton) {
+        demoButton.addEventListener('click', function() {
+            const ctaSection = document.getElementById('ctaSection');
+            if (ctaSection) {
+                ctaSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        });
+    }
+    
+    // Add professional animations
+    const style = document.createElement('style');
+    style.textContent = `
+        .hunting-unit path {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
-        function requestTick() {
-            if (!ticking) {
-                requestAnimationFrame(updateParallax);
-                ticking = true;
+        .pulse-point {
+            transform-origin: center;
+        }
+        
+        .data-panel {
+            animation: fadeIn 0.8s ease forwards;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
         }
         
-        window.addEventListener('scroll', requestTick);
-    }
-    
-    // Add custom CSS animations for trails
-    const style = document.createElement('style');
-    style.textContent = `
-        @keyframes trailExpand {
-            0% { r: 3; opacity: 0.8; stroke-width: 1; }
-            100% { r: 12; opacity: 0; stroke-width: 0.5; }
+        .feed-card.visible .deer-silhouette {
+            animation: fadeInScale 0.8s ease forwards;
         }
         
-        @keyframes hotspotIntense {
-            0%, 100% { r: 8; opacity: 0.6; }
-            50% { r: 25; opacity: 1; }
-        }
-        
-        .interactive-map:hover .radar-sweep {
-            animation-duration: 2s !important;
-        }
-        
-        .interactive-map:hover .gps-dot {
-            animation-duration: 1s !important;
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 0.6;
+                transform: scale(1.5);
+            }
         }
     `;
     document.head.appendChild(style);
-    
-    // Add hover effects to feed cards
-    feedCards.forEach(card => {
-        card.addEventListener('mouseenter', () => {
-            if (card.classList.contains('show')) {
-                card.style.transform = 'translateY(-5px) scale(1.02)';
-                card.style.boxShadow = '0 15px 35px rgba(0, 102, 255, 0.2)';
-            }
-        });
-        
-        card.addEventListener('mouseleave', () => {
-            if (card.classList.contains('show')) {
-                card.style.transform = 'translateY(0) scale(1)';
-                card.style.boxShadow = 'none';
-            }
-        });
-    });
-    
-    // Click handler
-    demoButton.addEventListener('click', startCommunityDemo);
-    
-    // Auto-demo only once, then keep content visible
-    let hasAutoPlayed = false;
-    let autoTimer = setInterval(() => {
-        if (!isAnimating && !hasAutoPlayed) {
-            startCommunityDemo();
-            hasAutoPlayed = true;
-            clearInterval(autoTimer);
-        }
-    }, 15000);
-    
-    // Manual trigger still works
-    demoButton.addEventListener('click', () => {
-        if (!isAnimating) {
-            startCommunityDemo();
-        }
-    });
-    
-    // Initial demo after 3 seconds
-    setTimeout(() => {
-        if (!isAnimating) {
-            startCommunityDemo();
-        }
-    }, 3000);
-    
-    // Add some dynamic content rotation
-    const hunterNames = ['BuckHunter47', 'OutdoorQueen', 'TrailWatcher', 'WoodsStalker', 'DeerSlayer99', 'FieldMaster', 'CamoKing', 'WildTracker', 'HuntingPro'];
-    const huntUnits = ['Unit 3B2', 'Unit 2K1', 'Unit 1A1', 'Unit 4C3', 'Unit 2A4', 'Unit 3K1'];
-    const timeStamps = ['2 hours ago', '5 hours ago', '1 day ago', '3 hours ago', '6 hours ago', '2 days ago'];
-    
-    // Rotate content every 12 seconds when not animating
-    setInterval(() => {
-        if (!isAnimating) {
-            feedCards.forEach((card, index) => {
-                const nameEl = card.querySelector('.hunter-name');
-                const locationEl = card.querySelector('.hunt-location');
-                
-                const randomName = hunterNames[Math.floor(Math.random() * hunterNames.length)];
-                const randomUnit = huntUnits[Math.floor(Math.random() * huntUnits.length)];
-                const randomTime = timeStamps[Math.floor(Math.random() * timeStamps.length)];
-                
-                nameEl.textContent = randomName;
-                locationEl.textContent = `${randomUnit} • ${randomTime}`;
-            });
-        }
-    }, 12000);
 });

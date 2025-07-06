@@ -617,6 +617,271 @@ body {
     opacity: 0.8;
 }
 
+/* Interactive Map Styles */
+.interactive-map {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    height: 400px;
+    margin: 0 auto;
+    background: linear-gradient(135deg, #0a0e1a, #0f1523);
+    border-radius: 1rem;
+    overflow: hidden;
+    border: 1px solid rgba(0, 102, 255, 0.2);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+}
+
+.map-svg {
+    width: 100%;
+    height: 100%;
+}
+
+.unit-label {
+    fill: rgba(255, 255, 255, 0.7);
+    font-size: 14px;
+    font-weight: 600;
+    text-anchor: middle;
+    font-family: 'Inter', sans-serif;
+}
+
+.hunting-unit {
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.hunting-unit:hover path {
+    fill: rgba(0, 102, 255, 0.15);
+    stroke: rgba(255, 255, 255, 0.4);
+}
+
+.hunting-unit:hover .unit-label {
+    fill: white;
+}
+
+.pulse-point {
+    filter: blur(1px);
+}
+
+.map-data-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.data-panel {
+    position: absolute;
+    background: rgba(10, 14, 26, 0.9);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 0.5rem;
+    padding: 1rem;
+    color: white;
+}
+
+.top-panel {
+    top: 1rem;
+    left: 1rem;
+    right: 1rem;
+}
+
+.metric-row {
+    display: flex;
+    justify-content: space-around;
+    gap: 2rem;
+}
+
+.metric {
+    text-align: center;
+}
+
+.metric-value {
+    display: block;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #0066FF;
+    margin-bottom: 0.25rem;
+}
+
+.metric-label {
+    display: block;
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.6);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.unit-info-panel {
+    position: absolute;
+    bottom: 1rem;
+    left: 1rem;
+    right: 1rem;
+    background: rgba(10, 14, 26, 0.95);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 0.5rem;
+    padding: 1rem;
+    color: white;
+    opacity: 0;
+    transform: translateY(10px);
+    animation: slideUp 0.5s ease forwards;
+    animation-delay: 1s;
+}
+
+@keyframes slideUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.unit-info-panel h4 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    color: white;
+}
+
+.unit-metrics {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.metric-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.metric-item .label {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.metric-item .value {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #0066FF;
+}
+
+.activity-bar {
+    width: 100px;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.activity-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #0066FF, #0099FF);
+    border-radius: 2px;
+    transition: width 0.5s ease;
+}
+
+.map-legend {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 1rem;
+    padding: 0.75rem;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 0.5rem;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.legend-icon {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+.pulse-icon {
+    background: #0066FF;
+    position: relative;
+}
+
+.pulse-icon::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 20px;
+    height: 20px;
+    background: #0066FF;
+    border-radius: 50%;
+    animation: pulseRing 2s ease-out infinite;
+}
+
+@keyframes pulseRing {
+    0% {
+        transform: translate(-50%, -50%) scale(0.5);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1.5);
+        opacity: 0;
+    }
+}
+
+/* Feed Card Styles */
+.avatar {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.image-placeholder {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    background: linear-gradient(135deg, #1a2332, #0f1419);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.deer-silhouette {
+    opacity: 0.6;
+    transform: scale(1.5);
+}
+
+.engagement-stats {
+    position: absolute;
+    bottom: 0.5rem;
+    right: 0.5rem;
+    display: flex;
+    gap: 1rem;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(10px);
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.stat-item {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    color: white;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
 /* Animations */
 @keyframes scanPulse {
     0%, 100% { opacity: 0; }
