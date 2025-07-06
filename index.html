@@ -22,34 +22,52 @@
             <div class="hero-content">
                 <h2>AI-Powered Photo Scoring</h2>
                 <p>Upload your hunting photos and get instant AI-powered score estimates</p>
-                <div class="upload-demo">
-                    <div class="upload-zone" id="uploadZone">
-                        <div class="upload-icon">📸</div>
-                        <p>Drop a hunting photo here</p>
-                        <span>or click to try demo</span>
-                        <div class="demo-image" id="demoImage">
-                            <div class="placeholder-image">
-                                🦌
-                                <span>Original Photo</span>
+                <div class="demo-container">
+                    <div class="demo-workflow">
+                        <div class="workflow-step step-1" id="step1">
+                            <div class="step-image">
+                                <div class="upload-zone">
+                                    <div class="upload-icon">📸</div>
+                                    <span>Upload Photo</span>
+                                </div>
                             </div>
+                            <div class="step-arrow">→</div>
                         </div>
-                        <div class="processed-image" id="processedImage">
-                            <div class="placeholder-image processed">
-                                🦌
-                                <div class="antler-highlight">⚡⚡</div>
-                                <span>AI Processed</span>
+                        
+                        <div class="workflow-step step-2" id="step2">
+                            <div class="step-image">
+                                <div class="placeholder-image">
+                                    🦌
+                                    <div class="scanning-effect" id="scanEffect">
+                                        <div class="scan-line"></div>
+                                        <img src="assets/logos/Thingvalla_Technology_Icon_Blue.png" alt="AI Processing" class="scan-logo">
+                                    </div>
+                                </div>
                             </div>
+                            <div class="step-label">AI Processing</div>
+                            <div class="step-arrow">→</div>
                         </div>
-                        <div class="scan-overlay" id="scanOverlay">
-                            <div class="scan-line"></div>
-                            <div class="triangular-scanner">
-                                <img src="assets/logos/Thingvalla_Technology_Icon_Blue.png" alt="Scanning" class="scanner-logo">
+                        
+                        <div class="workflow-step step-3" id="step3">
+                            <div class="step-image">
+                                <div class="placeholder-image processed">
+                                    🦌
+                                    <div class="antler-highlight">⚡⚡</div>
+                                </div>
+                                <div class="score-badge" id="scoreBadge">
+                                    <div class="score-number">148</div>
+                                    <div class="score-label">AI Score</div>
+                                </div>
                             </div>
+                            <div class="step-label">Scored Result</div>
                         </div>
-                        <div class="score-reveal" id="scoreReveal">
-                            <div class="score-number">148</div>
-                            <div class="score-label">AI Score</div>
-                        </div>
+                    </div>
+                    
+                    <div class="demo-trigger">
+                        <button class="demo-button" id="demoButton">
+                            <span>See AI in Action</span>
+                            <div class="button-glow"></div>
+                        </button>
                     </div>
                 </div>
             </div>

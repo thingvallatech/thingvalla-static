@@ -1,72 +1,66 @@
-// AI Score Reveal Interactive Demo
+// AI Workflow Demo
 document.addEventListener('DOMContentLoaded', function() {
-    const uploadZone = document.getElementById('uploadZone');
-    const scanOverlay = document.getElementById('scanOverlay');
-    const scoreReveal = document.getElementById('scoreReveal');
+    const demoButton = document.getElementById('demoButton');
+    const step1 = document.getElementById('step1');
+    const step2 = document.getElementById('step2');
+    const step3 = document.getElementById('step3');
+    const scanEffect = document.getElementById('scanEffect');
+    const scoreBadge = document.getElementById('scoreBadge');
     const ctaSection = document.getElementById('ctaSection');
-    const demoImage = document.getElementById('demoImage');
-    const processedImage = document.getElementById('processedImage');
-    const uploadIcon = uploadZone.querySelector('.upload-icon');
-    const uploadText = uploadZone.querySelector('p');
-    const uploadSpan = uploadZone.querySelector('span');
     
     let isAnimating = false;
     
-    function startDemo() {
+    function startWorkflowDemo() {
         if (isAnimating) return;
         isAnimating = true;
         
-        // Hide upload UI and show original image
-        uploadIcon.style.opacity = '0';
-        uploadText.style.opacity = '0';
-        uploadSpan.style.opacity = '0';
+        // Reset all states
+        resetWorkflow();
         
+        // Step 1: Upload (already visible, just activate)
         setTimeout(() => {
-            demoImage.classList.add('show');
-            uploadZone.style.border = '3px solid rgba(255, 255, 255, 0.5)';
-        }, 300);
+            step1.classList.add('active');
+            step1.querySelector('.step-arrow').classList.add('show');
+        }, 200);
         
-        // After 1 second, start scanning
+        // Step 2: AI Processing
         setTimeout(() => {
-            scanOverlay.classList.add('active');
-        }, 1500);
+            step2.classList.add('active');
+            scanEffect.classList.add('active');
+            step2.querySelector('.step-arrow').classList.add('show');
+        }, 1000);
         
-        // After scanning, show processed image with score
+        // Step 3: Result with score
         setTimeout(() => {
-            scanOverlay.classList.remove('active');
-            demoImage.classList.remove('show');
-            processedImage.classList.add('show');
-            scoreReveal.classList.add('active');
+            scanEffect.classList.remove('active');
+            step3.classList.add('active');
+            step3.querySelector('.antler-highlight').classList.add('show');
             
-            // Animate number counting
-            animateNumber();
-            
-            // Show CTA after score reveal
+            // Show score badge with delay
             setTimeout(() => {
-                ctaSection.style.opacity = '0';
-                ctaSection.style.transform = 'translateY(20px)';
-                ctaSection.style.transition = 'all 0.6s ease-out';
-                
-                setTimeout(() => {
-                    ctaSection.style.opacity = '1';
-                    ctaSection.style.transform = 'translateY(0)';
-                }, 100);
-                
-            }, 1000);
+                scoreBadge.classList.add('show');
+                animateScoreNumber();
+            }, 500);
             
-            // Reset after 6 seconds
+            // Show CTA
             setTimeout(() => {
-                resetDemo();
-            }, 6000);
+                showCTA();
+            }, 1200);
             
-        }, 4000);
+        }, 3000);
+        
+        // Auto reset after showing result
+        setTimeout(() => {
+            resetWorkflow();
+            isAnimating = false;
+        }, 7000);
     }
     
-    function animateNumber() {
-        const scoreNumber = document.querySelector('.score-number');
+    function animateScoreNumber() {
+        const scoreNumber = scoreBadge.querySelector('.score-number');
         const targetScore = 148;
         let currentScore = 0;
-        const increment = targetScore / 20;
+        const increment = targetScore / 15;
         
         const timer = setInterval(() => {
             currentScore += increment;
@@ -75,63 +69,64 @@ document.addEventListener('DOMContentLoaded', function() {
                 clearInterval(timer);
             }
             scoreNumber.textContent = Math.floor(currentScore);
-        }, 50);
+        }, 80);
     }
     
-    function resetDemo() {
-        scoreReveal.classList.remove('active');
-        processedImage.classList.remove('show');
-        demoImage.classList.remove('show');
+    function showCTA() {
+        ctaSection.style.opacity = '0';
+        ctaSection.style.transform = 'translateY(20px)';
+        ctaSection.style.transition = 'all 0.6s ease-out';
         
-        // Reset upload UI
-        uploadIcon.style.opacity = '0.8';
-        uploadText.style.opacity = '1';
-        uploadSpan.style.opacity = '0.7';
-        uploadZone.style.border = '3px dashed rgba(255, 255, 255, 0.3)';
+        setTimeout(() => {
+            ctaSection.style.opacity = '1';
+            ctaSection.style.transform = 'translateY(0)';
+        }, 100);
+    }
+    
+    function resetWorkflow() {
+        // Reset all steps
+        [step1, step2, step3].forEach(step => {
+            step.classList.remove('active');
+        });
         
-        isAnimating = false;
+        // Reset arrows
+        document.querySelectorAll('.step-arrow').forEach(arrow => {
+            arrow.classList.remove('show');
+        });
+        
+        // Reset effects
+        scanEffect.classList.remove('active');
+        scoreBadge.classList.remove('show');
+        step3.querySelector('.antler-highlight').classList.remove('show');
         
         // Reset score number
-        document.querySelector('.score-number').textContent = '148';
+        scoreBadge.querySelector('.score-number').textContent = '148';
     }
     
     // Click handler
-    uploadZone.addEventListener('click', startDemo);
+    demoButton.addEventListener('click', startWorkflowDemo);
     
-    // Drag and drop handlers
-    uploadZone.addEventListener('dragover', function(e) {
-        e.preventDefault();
-        uploadZone.style.background = 'rgba(255, 255, 255, 0.2)';
-        uploadZone.style.borderColor = 'rgba(255, 255, 255, 0.6)';
-    });
-    
-    uploadZone.addEventListener('dragleave', function(e) {
-        e.preventDefault();
-        uploadZone.style.background = 'rgba(255, 255, 255, 0.1)';
-        uploadZone.style.borderColor = 'rgba(255, 255, 255, 0.3)';
-    });
-    
-    uploadZone.addEventListener('drop', function(e) {
-        e.preventDefault();
-        uploadZone.style.background = 'rgba(255, 255, 255, 0.1)';
-        uploadZone.style.borderColor = 'rgba(255, 255, 255, 0.3)';
-        startDemo();
-    });
-    
-    // Auto-demo every 10 seconds if no interaction
+    // Auto-demo every 12 seconds
     let autoTimer = setInterval(() => {
         if (!isAnimating) {
-            startDemo();
+            startWorkflowDemo();
         }
-    }, 10000);
+    }, 12000);
     
     // Clear auto timer on user interaction
-    uploadZone.addEventListener('click', () => {
+    demoButton.addEventListener('click', () => {
         clearInterval(autoTimer);
         autoTimer = setInterval(() => {
             if (!isAnimating) {
-                startDemo();
+                startWorkflowDemo();
             }
         }, 15000);
     });
+    
+    // Initial demo after 3 seconds
+    setTimeout(() => {
+        if (!isAnimating) {
+            startWorkflowDemo();
+        }
+    }, 3000);
 });
