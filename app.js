@@ -4,6 +4,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const scanOverlay = document.getElementById('scanOverlay');
     const scoreReveal = document.getElementById('scoreReveal');
     const ctaSection = document.getElementById('ctaSection');
+    const demoImage = document.getElementById('demoImage');
+    const processedImage = document.getElementById('processedImage');
+    const uploadIcon = uploadZone.querySelector('.upload-icon');
+    const uploadText = uploadZone.querySelector('p');
+    const uploadSpan = uploadZone.querySelector('span');
     
     let isAnimating = false;
     
@@ -11,12 +16,26 @@ document.addEventListener('DOMContentLoaded', function() {
         if (isAnimating) return;
         isAnimating = true;
         
-        // Show scanning overlay
-        scanOverlay.classList.add('active');
+        // Hide upload UI and show original image
+        uploadIcon.style.opacity = '0';
+        uploadText.style.opacity = '0';
+        uploadSpan.style.opacity = '0';
         
-        // After 2 seconds, hide scan and show score
+        setTimeout(() => {
+            demoImage.classList.add('show');
+            uploadZone.style.border = '3px solid rgba(255, 255, 255, 0.5)';
+        }, 300);
+        
+        // After 1 second, start scanning
+        setTimeout(() => {
+            scanOverlay.classList.add('active');
+        }, 1500);
+        
+        // After scanning, show processed image with score
         setTimeout(() => {
             scanOverlay.classList.remove('active');
+            demoImage.classList.remove('show');
+            processedImage.classList.add('show');
             scoreReveal.classList.add('active');
             
             // Animate number counting
@@ -35,12 +54,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 
             }, 1000);
             
-            // Reset after 5 seconds
+            // Reset after 6 seconds
             setTimeout(() => {
                 resetDemo();
-            }, 5000);
+            }, 6000);
             
-        }, 2000);
+        }, 4000);
     }
     
     function animateNumber() {
@@ -61,6 +80,15 @@ document.addEventListener('DOMContentLoaded', function() {
     
     function resetDemo() {
         scoreReveal.classList.remove('active');
+        processedImage.classList.remove('show');
+        demoImage.classList.remove('show');
+        
+        // Reset upload UI
+        uploadIcon.style.opacity = '0.8';
+        uploadText.style.opacity = '1';
+        uploadSpan.style.opacity = '0.7';
+        uploadZone.style.border = '3px dashed rgba(255, 255, 255, 0.3)';
+        
         isAnimating = false;
         
         // Reset score number
