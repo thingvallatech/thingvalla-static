@@ -59,7 +59,18 @@ body {
     font-size: 1.2rem;
     opacity: 0.9;
     max-width: 600px;
-    margin: 0 auto;
+    margin: 0 auto 2rem;
+}
+
+.hero-gif {
+    margin-top: 2rem;
+}
+
+.gif-animation {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    opacity: 0.8;
 }
 
 .applications {
