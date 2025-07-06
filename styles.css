@@ -80,12 +80,11 @@ body {
 .crosshair {
     position: absolute;
     top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
     color: #ff0000;
     font-size: 20px;
     animation: crosshair-move 2s infinite ease-in-out;
     z-index: 10;
+    transform: translateY(-50%);
 }
 
 .duck {
@@ -136,18 +135,18 @@ body {
 }
 
 @keyframes crosshair-move {
-    0%, 100% { transform: translate(-70%, -50%); }
-    50% { transform: translate(-30%, -50%); }
+    0%, 100% { left: 20%; }
+    50% { left: 80%; }
 }
 
 @keyframes duck-fly {
     0% { left: -30px; }
-    100% { left: 130px; }
+    100% { left: 150px; }
 }
 
 @keyframes deer-walk {
-    0%, 100% { left: -20px; }
-    50% { left: 100px; }
+    0% { left: -30px; }
+    100% { left: 130px; }
 }
 
 @keyframes shot-flash {
