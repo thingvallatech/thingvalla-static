@@ -18,7 +18,6 @@ document.addEventListener('DOMContentLoaded', function() {
         // Show area activity first
         setTimeout(() => {
             areaActivity.classList.add('show');
-            animateStats();
         }, 500);
         
         // Show feed cards one by one
@@ -46,23 +45,19 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 10000);
     }
     
-    function animateStats() {
-        const statNumbers = document.querySelectorAll('.stat-number');
-        const targets = [23, 47, 8];
-        
-        statNumbers.forEach((stat, index) => {
-            let current = 0;
-            const target = targets[index];
-            const increment = target / 20;
-            
-            const timer = setInterval(() => {
-                current += increment;
-                if (current >= target) {
-                    current = target;
-                    clearInterval(timer);
-                }
-                stat.textContent = Math.floor(current);
-            }, 50);
+    function animateFeatures() {
+        const featureItems = document.querySelectorAll('.feature-item');
+        featureItems.forEach((item, index) => {
+            setTimeout(() => {
+                item.style.opacity = '0';
+                item.style.transform = 'translateX(-20px)';
+                item.style.transition = 'all 0.4s ease';
+                
+                setTimeout(() => {
+                    item.style.opacity = '1';
+                    item.style.transform = 'translateX(0)';
+                }, 100);
+            }, index * 150);
         });
     }
     
@@ -85,12 +80,6 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Reset area activity
         areaActivity.classList.remove('show');
-        
-        // Reset stat numbers
-        document.querySelectorAll('.stat-number').forEach((stat, index) => {
-            const values = [23, 47, 8];
-            stat.textContent = values[index];
-        });
     }
     
     // Add hover effects to feed cards
