@@ -1,4 +1,4 @@
-# ThingValla Static Landing Page
+# Thingvalla Static Landing Page
 
 A clean, responsive landing page for thingvalla.tech that provides access to containerized applications.
 
@@ -25,7 +25,7 @@ A clean, responsive landing page for thingvalla.tech that provides access to con
 ### Subdomain Configuration
 Configure these subdomains in Porkbun DNS:
 - `heimdall.thingvalla.tech` → Point to your container server IP
-- `hunt.thingvalla.tech` → Point to hunting app container server IP
+- `rackmap.thingvalla.tech` → Point to RackMap app container server IP
 
 ## Features
 - Responsive design (mobile, tablet, desktop)
