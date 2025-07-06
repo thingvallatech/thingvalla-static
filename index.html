@@ -20,8 +20,8 @@
                 </div>
             </nav>
             <div class="hero-content">
-                <h1>See What's Happening in Your Hunting Area</h1>
-                <p>Join thousands of hunters sharing their catches and discovering the best spots</p>
+                <h1>Visualize Your Hunting Success by Unit</h1>
+                <p>Upload photos, explore hunting unit data, and see where hunters are finding success across North Dakota</p>
                 <div class="demo-container">
                     <div class="demo-preview">
                         <!-- Mobile Hunt Feed -->
@@ -161,143 +161,177 @@
                             </div>
                         </div>
                         
-                        <!-- Area Discovery Map -->
-                        <div class="area-discovery">
-                            <div class="map-header">
-                                <h3>What's Happening Near You</h3>
-                                <button class="filter-btn">
-                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="white">
-                                        <path d="M2 4 L14 4 M4 8 L12 8 M6 12 L10 12" stroke="white" stroke-width="2"/>
-                                    </svg>
-                                    Filter
-                                </button>
+                        <!-- RackMap Interface Demo -->
+                        <div class="rackmap-demo">
+                            <div class="rackmap-header">
+                                <div class="app-logo">
+                                    <img src="assets/logos/Thingvalla_Technology_Logo_Full_White.png" alt="Thingvalla" class="thingvalla-logo"/>
+                                    <span class="app-name">RackMap</span>
+                                </div>
+                                <div class="filter-controls">
+                                    <button class="filter-btn active">All Types</button>
+                                    <button class="filter-btn">All Animals</button>
+                                    <button class="filter-btn">All Time</button>
+                                </div>
+                                <div class="user-controls">
+                                    <button class="user-btn secondary">My Images</button>
+                                    <button class="user-btn primary">Upload Image</button>
+                                    <button class="user-btn logout">Logout</button>
+                                </div>
                             </div>
                             
-                            <div class="discovery-map">
-                                <svg viewBox="0 0 400 300" class="nd-map">
+                            <div class="map-interface">
+                                <svg viewBox="0 0 600 400" class="hunting-map">
                                     <defs>
-                                        <linearGradient id="map-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                                            <stop offset="0%" style="stop-color:#f8f9fa;stop-opacity:1" />
-                                            <stop offset="100%" style="stop-color:#e9ecef;stop-opacity:1" />
+                                        <pattern id="terrain-pattern" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+                                            <rect width="40" height="40" fill="#90c695"/>
+                                            <circle cx="10" cy="10" r="2" fill="#7ab87f" opacity="0.6"/>
+                                            <circle cx="30" cy="25" r="1.5" fill="#7ab87f" opacity="0.4"/>
+                                        </pattern>
+                                        
+                                        <linearGradient id="unit-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                            <stop offset="0%" style="stop-color:rgba(144, 198, 149, 0.7)" />
+                                            <stop offset="100%" style="stop-color:rgba(122, 184, 127, 0.5)" />
                                         </linearGradient>
-                                        <filter id="shadow">
-                                            <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.15"/>
+                                        
+                                        <filter id="unit-shadow">
+                                            <feDropShadow dx="1" dy="1" stdDeviation="2" flood-opacity="0.3"/>
                                         </filter>
                                     </defs>
                                     
-                                    <!-- ND Background -->
-                                    <path d="M 50 120 L 60 100 L 80 90 L 110 85 L 140 82 L 170 80 L 200 78 L 230 77 L 260 76 L 290 77 L 320 80 L 350 85 L 365 95 L 370 110 L 372 125 L 371 140 L 368 155 L 360 170 L 340 180 L 310 185 L 280 187 L 250 188 L 220 189 L 190 190 L 160 191 L 130 192 L 100 190 L 70 185 L 55 170 L 50 155 L 48 140 L 49 125 L 50 120 Z" 
-                                         fill="url(#map-gradient)" 
-                                         stroke="#dee2e6" 
-                                         stroke-width="2"
-                                         filter="url(#shadow)"/>
+                                    <!-- Map Background -->
+                                    <rect width="600" height="400" fill="url(#terrain-pattern)"/>
                                     
-                                    <!-- Unit Boundaries -->
-                                    <g class="unit-boundaries">
-                                        <path d="M 50 120 L 90 110 L 95 145 L 90 175 L 55 180 L 50 150 Z" 
-                                              fill="none" 
-                                              stroke="#adb5bd" 
-                                              stroke-width="1"
-                                              stroke-dasharray="3,2"/>
-                                        <text x="72" y="150" class="unit-name">1</text>
+                                    <!-- North Dakota Hunting Units (Accurate Layout) -->
+                                    <!-- Western Units -->
+                                    <g class="hunting-units-west">
+                                        <rect x="50" y="80" width="70" height="50" fill="url(#unit-gradient)" stroke="#2c3e50" stroke-width="1" filter="url(#unit-shadow)"/>
+                                        <text x="85" y="110" class="unit-label">3A1</text>
                                         
-                                        <path d="M 140 82 L 200 78 L 205 110 L 200 140 L 145 145 L 140 115 Z" 
-                                              fill="none" 
-                                              stroke="#adb5bd" 
-                                              stroke-width="1"
-                                              stroke-dasharray="3,2"/>
-                                        <text x="172" y="115" class="unit-name">2A</text>
+                                        <rect x="120" y="80" width="70" height="50" fill="url(#unit-gradient)" stroke="#2c3e50" stroke-width="1" filter="url(#unit-shadow)"/>
+                                        <text x="155" y="110" class="unit-label">3A2</text>
                                         
-                                        <path d="M 200 78 L 260 76 L 265 110 L 260 140 L 205 140 L 200 110 Z" 
-                                              fill="none" 
-                                              stroke="#adb5bd" 
-                                              stroke-width="1"
-                                              stroke-dasharray="3,2"/>
-                                        <text x="232" y="110" class="unit-name">2B</text>
+                                        <rect x="50" y="130" width="70" height="60" fill="url(#unit-gradient)" stroke="#2c3e50" stroke-width="1" filter="url(#unit-shadow)"/>
+                                        <text x="85" y="165" class="unit-label">3B1</text>
                                         
-                                        <path d="M 90 145 L 130 140 L 135 170 L 130 190 L 90 192 L 95 175 Z" 
-                                              fill="none" 
-                                              stroke="#adb5bd" 
-                                              stroke-width="1"
-                                              stroke-dasharray="3,2"/>
-                                        <text x="112" y="170" class="unit-name">3B</text>
+                                        <rect x="120" y="130" width="70" height="60" fill="url(#unit-gradient)" stroke="#2c3e50" stroke-width="1" filter="url(#unit-shadow)"/>
+                                        <text x="155" y="165" class="unit-label">3B2</text>
+                                        
+                                        <rect x="50" y="190" width="70" height="60" fill="url(#unit-gradient)" stroke="#2c3e50" stroke-width="1" filter="url(#unit-shadow)"/>
+                                        <text x="85" y="225" class="unit-label">3E1</text>
+                                        
+                                        <rect x="120" y="190" width="70" height="60" fill="url(#unit-gradient)" stroke="#2c3e50" stroke-width="1" filter="url(#unit-shadow)"/>
+                                        <text x="155" y="225" class="unit-label">3E2</text>
+                                        
+                                        <rect x="50" y="250" width="70" height="60" fill="url(#unit-gradient)" stroke="#2c3e50" stroke-width="1" filter="url(#unit-shadow)"/>
+                                        <text x="85" y="285" class="unit-label">3F1</text>
+                                        
+                                        <rect x="120" y="250" width="70" height="60" fill="url(#unit-gradient)" stroke="#2c3e50" stroke-width="1" filter="url(#unit-shadow)"/>
+                                        <text x="155" y="285" class="unit-label">3F2</text>
                                     </g>
                                     
-                                    <!-- Activity Markers -->
-                                    <g class="activity-markers">
-                                        <!-- Hunter activity pins -->
-                                        <g class="activity-pin" transform="translate(172, 115)">
-                                            <circle r="12" fill="#0066FF" opacity="0.2" class="pulse"/>
-                                            <circle r="8" fill="#0066FF"/>
-                                            <text y="-15" text-anchor="middle" class="activity-count">23</text>
-                                        </g>
+                                    <!-- Central Units -->
+                                    <g class="hunting-units-central">
+                                        <rect x="190" y="50" width="80" height="70" fill="url(#unit-gradient)" stroke="#2c3e50" stroke-width="1" filter="url(#unit-shadow)"/>
+                                        <text x="230" y="90" class="unit-label">2K1</text>
                                         
-                                        <g class="activity-pin" transform="translate(232, 110)">
-                                            <circle r="10" fill="#0066FF" opacity="0.2" class="pulse"/>
-                                            <circle r="6" fill="#0066FF"/>
-                                            <text y="-13" text-anchor="middle" class="activity-count">17</text>
-                                        </g>
+                                        <rect x="270" y="50" width="80" height="70" fill="url(#unit-gradient)" stroke="#2c3e50" stroke-width="1" filter="url(#unit-shadow)"/>
+                                        <text x="310" y="90" class="unit-label">2K2</text>
                                         
-                                        <g class="activity-pin" transform="translate(112, 170)">
-                                            <circle r="14" fill="#0066FF" opacity="0.2" class="pulse"/>
-                                            <circle r="10" fill="#0066FF"/>
-                                            <text y="-17" text-anchor="middle" class="activity-count">31</text>
-                                        </g>
+                                        <rect x="190" y="120" width="80" height="60" fill="url(#unit-gradient)" stroke="#2c3e50" stroke-width="1" filter="url(#unit-shadow)"/>
+                                        <text x="230" y="155" class="unit-label">2H</text>
                                         
-                                        <g class="activity-pin" transform="translate(72, 150)">
-                                            <circle r="8" fill="#0066FF" opacity="0.2" class="pulse"/>
-                                            <circle r="5" fill="#0066FF"/>
-                                            <text y="-11" text-anchor="middle" class="activity-count">8</text>
-                                        </g>
+                                        <rect x="270" y="120" width="80" height="60" fill="url(#unit-gradient)" stroke="#2c3e50" stroke-width="1" filter="url(#unit-shadow)"/>
+                                        <text x="310" y="155" class="unit-label">2F1</text>
+                                        
+                                        <rect x="190" y="180" width="80" height="60" fill="url(#unit-gradient)" stroke="#2c3e50" stroke-width="1" filter="url(#unit-shadow)"/>
+                                        <text x="230" y="215" class="unit-label">2I</text>
+                                        
+                                        <rect x="270" y="180" width="80" height="60" fill="url(#unit-gradient)" stroke="#2c3e50" stroke-width="1" filter="url(#unit-shadow)"/>
+                                        <text x="310" y="215" class="unit-label">2F2</text>
+                                        
+                                        <rect x="190" y="240" width="80" height="70" fill="url(#unit-gradient)" stroke="#2c3e50" stroke-width="1" filter="url(#unit-shadow)"/>
+                                        <text x="230" y="280" class="unit-label">2G</text>
+                                        
+                                        <rect x="270" y="240" width="80" height="70" fill="url(#unit-gradient)" stroke="#2c3e50" stroke-width="1" filter="url(#unit-shadow)"/>
+                                        <text x="310" y="280" class="unit-label">2G1</text>
                                     </g>
                                     
-                                    <!-- Recent photo indicators -->
-                                    <g class="photo-indicators">
-                                        <g transform="translate(185, 125)">
-                                            <rect x="-8" y="-8" width="16" height="16" rx="2" fill="white" stroke="#0066FF" stroke-width="2"/>
-                                            <path d="M-4 -2 L0 2 L4 -4" fill="none" stroke="#0066FF" stroke-width="1.5"/>
-                                        </g>
+                                    <!-- Eastern Units -->
+                                    <g class="hunting-units-east">
+                                        <rect x="350" y="80" width="80" height="50" fill="url(#unit-gradient)" stroke="#2c3e50" stroke-width="1" filter="url(#unit-shadow)"/>
+                                        <text x="390" y="110" class="unit-label">2E</text>
                                         
-                                        <g transform="translate(245, 120)">
-                                            <rect x="-8" y="-8" width="16" height="16" rx="2" fill="white" stroke="#0066FF" stroke-width="2"/>
-                                            <path d="M-4 -2 L0 2 L4 -4" fill="none" stroke="#0066FF" stroke-width="1.5"/>
-                                        </g>
+                                        <rect x="430" y="80" width="80" height="50" fill="url(#unit-gradient)" stroke="#2c3e50" stroke-width="1" filter="url(#unit-shadow)"/>
+                                        <text x="470" y="110" class="unit-label">2C</text>
+                                        
+                                        <rect x="510" y="80" width="70" height="50" fill="url(#unit-gradient)" stroke="#2c3e50" stroke-width="1" filter="url(#unit-shadow)"/>
+                                        <text x="545" y="110" class="unit-label">2D</text>
+                                        
+                                        <rect x="350" y="130" width="80" height="60" fill="url(#unit-gradient)" stroke="#2c3e50" stroke-width="1" filter="url(#unit-shadow)"/>
+                                        <text x="390" y="165" class="unit-label">2L</text>
+                                        
+                                        <rect x="430" y="130" width="80" height="60" fill="url(#unit-gradient)" stroke="#2c3e50" stroke-width="1" filter="url(#unit-shadow)"/>
+                                        <text x="470" y="165" class="unit-label">2B</text>
+                                        
+                                        <rect x="350" y="190" width="80" height="70" fill="url(#unit-gradient)" stroke="#2c3e50" stroke-width="1" filter="url(#unit-shadow)"/>
+                                        <text x="390" y="230" class="unit-label">2A</text>
+                                    </g>
+                                    
+                                    <!-- Heat Map Overlays (Photo Density) -->
+                                    <g class="heat-overlays">
+                                        <!-- High activity areas -->
+                                        <circle cx="230" cy="155" r="25" fill="rgba(255, 100, 100, 0.4)" class="heat-zone high"/>
+                                        <text x="230" y="130" class="photo-count">14</text>
+                                        
+                                        <circle cx="390" cy="230" r="20" fill="rgba(255, 150, 100, 0.4)" class="heat-zone medium"/>
+                                        <text x="390" y="210" class="photo-count">7</text>
+                                        
+                                        <circle cx="155" cy="165" r="15" fill="rgba(255, 200, 100, 0.4)" class="heat-zone low"/>
+                                        <text x="155" y="150" class="photo-count">3</text>
+                                        
+                                        <circle cx="470" cy="165" r="18" fill="rgba(255, 150, 100, 0.4)" class="heat-zone medium"/>
+                                        <text x="470" y="145" class="photo-count">5</text>
                                     </g>
                                 </svg>
                                 
-                                <div class="map-stats">
-                                    <div class="stat-card">
-                                        <span class="stat-number">79</span>
-                                        <span class="stat-label">Active Hunters</span>
+                                <div class="legend-panel">
+                                    <div class="legend-item">
+                                        <div class="legend-color high"></div>
+                                        <span>7-14 photos</span>
                                     </div>
-                                    <div class="stat-card">
-                                        <span class="stat-number">241</span>
-                                        <span class="stat-label">Photos Today</span>
+                                    <div class="legend-item">
+                                        <div class="legend-color medium"></div>
+                                        <span>4-6 photos</span>
                                     </div>
-                                    <div class="stat-card hot">
-                                        <span class="stat-number">Unit 3B</span>
-                                        <span class="stat-label">Hottest Area</span>
+                                    <div class="legend-item">
+                                        <div class="legend-color low"></div>
+                                        <span>1-3 photos</span>
+                                    </div>
+                                    <div class="legend-item">
+                                        <div class="legend-color none"></div>
+                                        <span>No images</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     
-                    <div class="social-proof">
-                        <div class="community-stats">
-                            <div class="stat">
-                                <strong>2,847</strong>
-                                <span>Active Hunters</span>
-                            </div>
-                            <div class="stat">
-                                <strong>127</strong>
-                                <span>ND Units Covered</span>
-                            </div>
-                            <div class="stat">
-                                <strong>14.2K</strong>
-                                <span>Photos Shared</span>
-                            </div>
-                        </div>
+                    <div class="demo-actions">
+                        <button class="demo-button primary" id="uploadDemo">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="white">
+                                <path d="M10 1 L10 15 M4 9 L10 15 L16 9" stroke="white" stroke-width="2" fill="none"/>
+                                <rect x="2" y="16" width="16" height="2" fill="white"/>
+                            </svg>
+                            Try Upload Demo
+                        </button>
+                        <button class="demo-button secondary" id="exploreDemo">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="#0066FF">
+                                <circle cx="8" cy="8" r="6" stroke="#0066FF" stroke-width="2" fill="none"/>
+                                <path d="M14 14 L18 18" stroke="#0066FF" stroke-width="2"/>
+                            </svg>
+                            Explore Units
+                        </button>
                     </div>
                 </div>
             </div>
@@ -306,83 +340,94 @@
 
     <main class="features-section">
         <div class="container">
-            <h2>Everything You Need to Connect with Hunters</h2>
+            <h2>Visualize Hunting Success Across North Dakota</h2>
             
             <div class="features-grid">
                 <div class="feature-card">
-                    <div class="feature-icon social">
+                    <div class="feature-icon upload">
                         <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
-                            <circle cx="24" cy="14" r="6" stroke="#0066FF" stroke-width="3"/>
-                            <path d="M8 34 C8 26 15 20 24 20 S40 26 40 34" stroke="#0066FF" stroke-width="3"/>
-                            <circle cx="16" cy="36" r="3" fill="#0066FF"/>
-                            <circle cx="32" cy="36" r="3" fill="#0066FF"/>
+                            <rect x="8" y="16" width="32" height="24" rx="2" stroke="#0066FF" stroke-width="3"/>
+                            <circle cx="24" cy="24" r="4" stroke="#0066FF" stroke-width="2"/>
+                            <path d="M12 12 L20 4 M36 12 L28 4" stroke="#0066FF" stroke-width="2"/>
+                            <path d="M24 4 L24 16" stroke="#0066FF" stroke-width="3"/>
                         </svg>
                     </div>
-                    <h3>Share Your Success</h3>
-                    <p>Upload hunting photos instantly and share them with your hunting network. Tag your location and connect with hunters in your area.</p>
+                    <h3>Upload Hunt Photos</h3>
+                    <p>Upload your hunting photos with GPS coordinates and automatically tag them to the correct North Dakota hunting unit.</p>
                 </div>
                 
                 <div class="feature-card">
-                    <div class="feature-icon discover">
+                    <div class="feature-icon map">
                         <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
-                            <path d="M24 4 C16 4 10 10 10 18 C10 28 24 44 24 44 S38 28 38 18 C38 10 32 4 24 4 Z" stroke="#0066FF" stroke-width="3"/>
-                            <circle cx="24" cy="18" r="4" stroke="#0066FF" stroke-width="2"/>
-                            <circle cx="18" cy="12" r="2" fill="#ff4444"/>
-                            <circle cx="30" cy="14" r="2" fill="#ff4444"/>
+                            <rect x="6" y="10" width="36" height="28" stroke="#0066FF" stroke-width="3" fill="none"/>
+                            <path d="M6 18 L18 18 L18 30 L6 30 Z" fill="rgba(0, 102, 255, 0.1)" stroke="#0066FF"/>
+                            <path d="M18 10 L30 10 L30 22 L18 22 Z" fill="rgba(255, 100, 100, 0.3)" stroke="#0066FF"/>
+                            <path d="M30 18 L42 18 L42 30 L30 30 Z" fill="rgba(0, 102, 255, 0.1)" stroke="#0066FF"/>
+                            <text x="12" y="25" font-size="8" fill="#0066FF">3A</text>
+                            <text x="24" y="17" font-size="8" fill="#0066FF">2A</text>
+                            <text x="36" y="25" font-size="8" fill="#0066FF">2B</text>
                         </svg>
                     </div>
-                    <h3>Discover Area Activity</h3>
-                    <p>See what other hunters are catching in your hunting units. Real-time activity shows you where the action is happening.</p>
+                    <h3>Interactive Unit Map</h3>
+                    <p>Explore all North Dakota hunting units with heat map visualization showing photo density and success rates by area.</p>
                 </div>
                 
                 <div class="feature-card">
-                    <div class="feature-icon network">
+                    <div class="feature-icon filter">
                         <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
-                            <circle cx="14" cy="14" r="4" stroke="#0066FF" stroke-width="2"/>
-                            <circle cx="34" cy="14" r="4" stroke="#0066FF" stroke-width="2"/>
-                            <circle cx="24" cy="34" r="4" stroke="#0066FF" stroke-width="2"/>
-                            <path d="M18 14 L30 14 M18 17 L21 30 M30 17 L27 30" stroke="#0066FF" stroke-width="2"/>
+                            <path d="M8 12 L40 12 M12 20 L36 20 M16 28 L32 28" stroke="#0066FF" stroke-width="3"/>
+                            <circle cx="20" cy="12" r="3" fill="#0066FF"/>
+                            <circle cx="28" cy="20" r="3" fill="#0066FF"/>
+                            <circle cx="24" cy="28" r="3" fill="#0066FF"/>
                         </svg>
                     </div>
-                    <h3>Build Your Network</h3>
-                    <p>Follow your hunting buddies and discover new hunters in your area. Build connections that last beyond hunting season.</p>
+                    <h3>Smart Filtering</h3>
+                    <p>Filter photos by hunting type, animal species, time period, and location to find exactly what you're looking for.</p>
                 </div>
                 
                 <div class="feature-card">
-                    <div class="feature-icon intelligence">
+                    <div class="feature-icon analytics">
                         <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
-                            <rect x="8" y="12" width="32" height="24" rx="2" stroke="#0066FF" stroke-width="3"/>
-                            <path d="M14 20 L20 26 L28 18" stroke="#0066FF" stroke-width="2" fill="none"/>
-                            <circle cx="38" cy="10" r="4" fill="#ff4444"/>
+                            <path d="M8 40 L8 8 L40 8" stroke="#0066FF" stroke-width="3"/>
+                            <rect x="12" y="24" width="6" height="16" fill="rgba(0, 102, 255, 0.3)" stroke="#0066FF"/>
+                            <rect x="20" y="16" width="6" height="24" fill="rgba(255, 100, 100, 0.3)" stroke="#0066FF"/>
+                            <rect x="28" y="28" width="6" height="12" fill="rgba(0, 102, 255, 0.3)" stroke="#0066FF"/>
+                            <rect x="36" y="20" width="6" height="20" fill="rgba(0, 102, 255, 0.3)" stroke="#0066FF"/>
                         </svg>
                     </div>
-                    <h3>Get Area Intelligence</h3>
-                    <p>Access community-driven data about hunting unit productivity, peak times, and successful hunting strategies.</p>
+                    <h3>Unit Analytics</h3>
+                    <p>View detailed statistics for each hunting unit including photo counts, success patterns, and seasonal trends.</p>
                 </div>
             </div>
             
             <div class="cta-section">
                 <div class="main-cta">
-                    <h2>Ready to Join Your Hunting Community?</h2>
-                    <p>Connect with thousands of hunters, share your catches, and discover the best spots in your area.</p>
+                    <h2>Start Mapping Your Hunting Success</h2>
+                    <p>Upload your photos, explore hunting unit data, and visualize where hunters are finding success across North Dakota.</p>
                     <div class="cta-buttons">
                         <a href="https://rackmap.thingvalla.tech" class="primary-cta" target="_blank">
                             <svg width="20" height="20" viewBox="0 0 20 20" fill="white">
-                                <path d="M10 2 C8 2 6 4 6 6 C6 10 10 14 10 14 S14 10 14 6 C14 4 12 2 10 2 Z M10 8 C9 8 8 7 8 6 S9 4 10 4 S12 5 12 6 S11 8 10 8 Z"/>
+                                <rect x="3" y="6" width="14" height="10" rx="1" stroke="white" stroke-width="2" fill="none"/>
+                                <circle cx="10" cy="11" r="2" stroke="white" stroke-width="1.5" fill="none"/>
+                                <path d="M6 6 L8 4 L12 4 L14 6" stroke="white" stroke-width="2" fill="none"/>
                             </svg>
-                            Explore Your Area
+                            Launch RackMap
                         </a>
-                        <button class="secondary-cta" id="sharePhotoDemo">
+                        <button class="secondary-cta" id="exploreUnits">
                             <svg width="20" height="20" viewBox="0 0 20 20" fill="#0066FF">
-                                <path d="M10 12 C11.5 12 13 10.5 13 9 S11.5 6 10 6 S7 7.5 7 9 S8.5 12 10 12 Z"/>
-                                <path d="M17 5 L15 3 L13 3 L11 1 L9 1 L7 3 L5 3 L3 5 L3 15 C3 16 4 17 5 17 L15 17 C16 17 17 16 17 15 L17 5 Z M10 14 C7.5 14 5 11.5 5 9 S7.5 4 10 4 S15 6.5 15 9 S12.5 14 10 14 Z"/>
+                                <rect x="2" y="4" width="16" height="12" stroke="#0066FF" stroke-width="2" fill="none"/>
+                                <path d="M2 8 L6 8 L6 12 L2 12 Z" fill="rgba(0, 102, 255, 0.2)"/>
+                                <path d="M6 4 L10 4 L10 8 L6 8 Z" fill="rgba(255, 100, 100, 0.3)"/>
+                                <path d="M10 8 L14 8 L14 12 L10 12 Z" fill="rgba(0, 102, 255, 0.2)"/>
+                                <text x="4" y="10" font-size="6" fill="#0066FF">3A</text>
+                                <text x="8" y="6" font-size="6" fill="#0066FF">2A</text>
                             </svg>
-                            Try Photo Sharing
+                            Explore Units
                         </button>
                     </div>
                     
                     <div class="beta-notice">
-                        <p>🎯 Currently focused on North Dakota hunters • Expanding to more states soon</p>
+                        <p>🎯 North Dakota hunting units • More states coming soon</p>
                     </div>
                 </div>
             </div>
