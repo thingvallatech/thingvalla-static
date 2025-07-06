@@ -1,75 +1,69 @@
-// AI Workflow Demo
+// Community Feed Demo
 document.addEventListener('DOMContentLoaded', function() {
     const demoButton = document.getElementById('demoButton');
-    const step1 = document.getElementById('step1');
-    const step2 = document.getElementById('step2');
-    const step3 = document.getElementById('step3');
-    const scanEffect = document.getElementById('scanEffect');
-    const scoreBadge = document.getElementById('scoreBadge');
+    const huntFeed = document.getElementById('huntFeed');
+    const areaActivity = document.getElementById('areaActivity');
+    const feedCards = document.querySelectorAll('.feed-card');
     const ctaSection = document.getElementById('ctaSection');
     
     let isAnimating = false;
     
-    function startWorkflowDemo() {
+    function startCommunityDemo() {
         if (isAnimating) return;
         isAnimating = true;
         
         // Reset all states
-        resetWorkflow();
+        resetDemo();
         
-        // Step 1: Upload (already visible, just activate)
+        // Show area activity first
         setTimeout(() => {
-            step1.classList.add('active');
-            step1.querySelector('.step-arrow').classList.add('show');
-        }, 200);
+            areaActivity.classList.add('show');
+            animateStats();
+        }, 500);
         
-        // Step 2: AI Processing
+        // Show feed cards one by one
         setTimeout(() => {
-            step2.classList.add('active');
-            scanEffect.classList.add('active');
-            step2.querySelector('.step-arrow').classList.add('show');
+            feedCards[0].classList.add('show');
         }, 1000);
         
-        // Step 3: Result with score
         setTimeout(() => {
-            scanEffect.classList.remove('active');
-            step3.classList.add('active');
-            step3.querySelector('.antler-highlight').classList.add('show');
-            
-            // Show score badge with delay
-            setTimeout(() => {
-                scoreBadge.classList.add('show');
-                animateScoreNumber();
-            }, 500);
-            
-            // Show CTA
-            setTimeout(() => {
-                showCTA();
-            }, 1200);
-            
+            feedCards[1].classList.add('show');
+        }, 1500);
+        
+        setTimeout(() => {
+            feedCards[2].classList.add('show');
+        }, 2000);
+        
+        // Show CTA after all content is visible
+        setTimeout(() => {
+            showCTA();
         }, 3000);
         
-        // Auto reset after showing result
+        // Auto reset after showing all content
         setTimeout(() => {
-            resetWorkflow();
+            resetDemo();
             isAnimating = false;
-        }, 7000);
+        }, 10000);
     }
     
-    function animateScoreNumber() {
-        const scoreNumber = scoreBadge.querySelector('.score-number');
-        const targetScore = 148;
-        let currentScore = 0;
-        const increment = targetScore / 15;
+    function animateStats() {
+        const statNumbers = document.querySelectorAll('.stat-number');
+        const targets = [23, 47, 8];
         
-        const timer = setInterval(() => {
-            currentScore += increment;
-            if (currentScore >= targetScore) {
-                currentScore = targetScore;
-                clearInterval(timer);
-            }
-            scoreNumber.textContent = Math.floor(currentScore);
-        }, 80);
+        statNumbers.forEach((stat, index) => {
+            let current = 0;
+            const target = targets[index];
+            const increment = target / 20;
+            
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    current = target;
+                    clearInterval(timer);
+                }
+                stat.textContent = Math.floor(current);
+            }, 50);
+        });
     }
     
     function showCTA() {
@@ -83,50 +77,85 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 100);
     }
     
-    function resetWorkflow() {
-        // Reset all steps
-        [step1, step2, step3].forEach(step => {
-            step.classList.remove('active');
+    function resetDemo() {
+        // Reset feed cards
+        feedCards.forEach(card => {
+            card.classList.remove('show');
         });
         
-        // Reset arrows
-        document.querySelectorAll('.step-arrow').forEach(arrow => {
-            arrow.classList.remove('show');
+        // Reset area activity
+        areaActivity.classList.remove('show');
+        
+        // Reset stat numbers
+        document.querySelectorAll('.stat-number').forEach((stat, index) => {
+            const values = [23, 47, 8];
+            stat.textContent = values[index];
         });
-        
-        // Reset effects
-        scanEffect.classList.remove('active');
-        scoreBadge.classList.remove('show');
-        step3.querySelector('.antler-highlight').classList.remove('show');
-        
-        // Reset score number
-        scoreBadge.querySelector('.score-number').textContent = '148';
     }
     
-    // Click handler
-    demoButton.addEventListener('click', startWorkflowDemo);
+    // Add hover effects to feed cards
+    feedCards.forEach(card => {
+        card.addEventListener('mouseenter', () => {
+            if (card.classList.contains('show')) {
+                card.style.transform = 'translateY(-5px) scale(1.02)';
+                card.style.boxShadow = '0 15px 35px rgba(0, 102, 255, 0.2)';
+            }
+        });
+        
+        card.addEventListener('mouseleave', () => {
+            if (card.classList.contains('show')) {
+                card.style.transform = 'translateY(0) scale(1)';
+                card.style.boxShadow = 'none';
+            }
+        });
+    });
     
-    // Auto-demo every 12 seconds
+    // Click handler
+    demoButton.addEventListener('click', startCommunityDemo);
+    
+    // Auto-demo every 15 seconds
     let autoTimer = setInterval(() => {
         if (!isAnimating) {
-            startWorkflowDemo();
+            startCommunityDemo();
         }
-    }, 12000);
+    }, 15000);
     
     // Clear auto timer on user interaction
     demoButton.addEventListener('click', () => {
         clearInterval(autoTimer);
         autoTimer = setInterval(() => {
             if (!isAnimating) {
-                startWorkflowDemo();
+                startCommunityDemo();
             }
-        }, 15000);
+        }, 20000);
     });
     
     // Initial demo after 3 seconds
     setTimeout(() => {
         if (!isAnimating) {
-            startWorkflowDemo();
+            startCommunityDemo();
         }
     }, 3000);
+    
+    // Add some dynamic content rotation
+    const hunterNames = ['Jake M.', 'Sarah K.', 'Mike R.', 'Alex T.', 'Dana P.', 'Chris L.'];
+    const huntUnits = ['Unit 3B2', 'Unit 2K1', 'Unit 1A1', 'Unit 4C3', 'Unit 2A4', 'Unit 3K1'];
+    const timeStamps = ['2 hours ago', '5 hours ago', '1 day ago', '3 hours ago', '6 hours ago', '2 days ago'];
+    
+    // Rotate content every 12 seconds when not animating
+    setInterval(() => {
+        if (!isAnimating) {
+            feedCards.forEach((card, index) => {
+                const nameEl = card.querySelector('.hunter-name');
+                const locationEl = card.querySelector('.hunt-location');
+                
+                const randomName = hunterNames[Math.floor(Math.random() * hunterNames.length)];
+                const randomUnit = huntUnits[Math.floor(Math.random() * huntUnits.length)];
+                const randomTime = timeStamps[Math.floor(Math.random() * timeStamps.length)];
+                
+                nameEl.textContent = randomName;
+                locationEl.textContent = `${randomUnit} • ${randomTime}`;
+            });
+        }
+    }, 12000);
 });

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="RackMap - AI-powered hunting photo scoring platform. Upload photos, get instant AI score estimates, and connect with the hunting community.">
+    <meta name="description" content="RackMap - Social hunting discovery platform. Connect with hunters, share your success, discover area activity, and build your hunting network.">
     <meta name="keywords" content="Thingvalla, technology, dashboard, mapping, digital hub">
     <title>Thingvalla - Your Digital Hub</title>
     <link rel="icon" type="image/png" href="favicon.png">
@@ -20,52 +20,99 @@
                 </div>
             </nav>
             <div class="hero-content">
-                <h2>AI-Powered Photo Scoring</h2>
-                <p>Upload your hunting photos and get instant AI-powered score estimates</p>
+                <h2>Your Hunting Community Awaits</h2>
+                <p>Connect with hunters everywhere, share your success, and discover what's happening in your area</p>
                 <div class="demo-container">
-                    <div class="demo-workflow">
-                        <div class="workflow-step step-1" id="step1">
-                            <div class="step-image">
-                                <div class="upload-zone">
-                                    <div class="upload-icon">📸</div>
-                                    <span>Upload Photo</span>
+                    <div class="community-preview">
+                        <div class="hunt-feed" id="huntFeed">
+                            <div class="feed-card" id="card1">
+                                <div class="hunter-info">
+                                    <div class="avatar">👤</div>
+                                    <div class="hunter-details">
+                                        <span class="hunter-name">Jake M.</span>
+                                        <span class="hunt-location">Unit 3B2 • 2 hours ago</span>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="step-arrow">→</div>
-                        </div>
-                        
-                        <div class="workflow-step step-2" id="step2">
-                            <div class="step-image">
-                                <div class="placeholder-image">
-                                    🦌
-                                    <div class="scanning-effect" id="scanEffect">
-                                        <div class="scan-line"></div>
-                                        <img src="assets/logos/Thingvalla_Technology_Icon_Blue.png" alt="AI Processing" class="scan-logo">
+                                <div class="hunt-image">
+                                    <div class="placeholder-hunt">
+                                        🦌
+                                        <div class="engagement-stats">
+                                            <span>❤️ 12</span>
+                                            <span>💬 3</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="step-label">AI Processing</div>
-                            <div class="step-arrow">→</div>
-                        </div>
-                        
-                        <div class="workflow-step step-3" id="step3">
-                            <div class="step-image">
-                                <div class="placeholder-image processed">
-                                    🦌
-                                    <div class="antler-highlight">⚡⚡</div>
+                            
+                            <div class="feed-card" id="card2">
+                                <div class="hunter-info">
+                                    <div class="avatar">👤</div>
+                                    <div class="hunter-details">
+                                        <span class="hunter-name">Sarah K.</span>
+                                        <span class="hunt-location">Unit 2K1 • 5 hours ago</span>
+                                    </div>
                                 </div>
-                                <div class="score-badge" id="scoreBadge">
-                                    <div class="score-number">148</div>
-                                    <div class="score-label">AI Score</div>
+                                <div class="hunt-image">
+                                    <div class="placeholder-hunt">
+                                        🦌
+                                        <div class="engagement-stats">
+                                            <span>❤️ 8</span>
+                                            <span>💬 5</span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="step-label">Scored Result</div>
+                            
+                            <div class="feed-card" id="card3">
+                                <div class="hunter-info">
+                                    <div class="avatar">👤</div>
+                                    <div class="hunter-details">
+                                        <span class="hunter-name">Mike R.</span>
+                                        <span class="hunt-location">Unit 1A1 • 1 day ago</span>
+                                    </div>
+                                </div>
+                                <div class="hunt-image">
+                                    <div class="placeholder-hunt">
+                                        🦌
+                                        <div class="engagement-stats">
+                                            <span>❤️ 15</span>
+                                            <span>💬 7</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="area-activity" id="areaActivity">
+                            <h3>Active in Your Area</h3>
+                            <div class="activity-stats">
+                                <div class="stat-item">
+                                    <span class="stat-number">23</span>
+                                    <span class="stat-label">Hunters Active</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-number">47</span>
+                                    <span class="stat-label">Hunts This Week</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-number">8</span>
+                                    <span class="stat-label">Different Units</span>
+                                </div>
+                            </div>
+                            <div class="popular-units">
+                                <h4>Hot Spots This Week</h4>
+                                <div class="unit-list">
+                                    <span class="unit-tag">Unit 3B2 🔥</span>
+                                    <span class="unit-tag">Unit 2K1</span>
+                                    <span class="unit-tag">Unit 1A1</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     
                     <div class="demo-trigger">
                         <button class="demo-button" id="demoButton">
-                            <span>See AI in Action</span>
+                            <span>Join Your Hunting Community</span>
                             <div class="button-glow"></div>
                         </button>
                     </div>
@@ -76,13 +123,13 @@
 
     <main class="applications">
         <div class="container">
-            <h2>Applications</h2>
+            <h2>Why Hunters Choose RackMap</h2>
             <div class="cta-section" id="ctaSection">
                 <div class="cta-card">
-                    <h3>Ready to Score Your Photos?</h3>
-                    <p>Join thousands of hunters using AI to score their trophy photos</p>
+                    <h3>Join 2,847 Hunters Sharing Their Success</h3>
+                    <p>Connect with your hunting community, discover hot spots, and never miss the action in your area</p>
                     <a href="https://rackmap.thingvalla.tech" class="cta-button" target="_blank">
-                        <span>Launch RackMap</span>
+                        <span>Start Connecting</span>
                         <div class="button-triangles">
                             <div class="triangle triangle-1"></div>
                             <div class="triangle triangle-2"></div>
