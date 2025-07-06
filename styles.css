@@ -96,7 +96,7 @@ body {
     border-left: 4px solid #4299e1;
 }
 
-.app-card.hunting {
+.app-card.rackmap {
     border-left: 4px solid #38a169;
 }
 
@@ -110,7 +110,7 @@ body {
     color: #4299e1;
 }
 
-.hunting .app-icon {
+.rackmap .app-icon {
     color: #38a169;
 }
 
