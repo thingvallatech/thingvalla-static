@@ -80,6 +80,7 @@ body {
 .crosshair {
     position: absolute;
     top: 50%;
+    left: 20%;
     color: #ff0000;
     font-size: 20px;
     animation: crosshair-move 2s infinite ease-in-out;
@@ -91,6 +92,7 @@ body {
     position: absolute;
     font-size: 16px;
     animation: duck-fly 3s infinite linear;
+    left: -30px;
 }
 
 .duck1 {
@@ -107,7 +109,8 @@ body {
     position: absolute;
     bottom: 30px;
     font-size: 18px;
-    animation: deer-walk 4s infinite ease-in-out;
+    animation: deer-walk 4s infinite linear;
+    left: -30px;
 }
 
 .deer1 {
