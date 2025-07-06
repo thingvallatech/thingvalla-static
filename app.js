@@ -38,11 +38,10 @@ document.addEventListener('DOMContentLoaded', function() {
             showCTA();
         }, 3000);
         
-        // Auto reset after showing all content
+        // Don't auto reset - keep content visible
         setTimeout(() => {
-            resetDemo();
             isAnimating = false;
-        }, 10000);
+        }, 4000);
     }
     
     function animateFeatures() {
@@ -73,13 +72,13 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     function resetDemo() {
-        // Reset feed cards
-        feedCards.forEach(card => {
-            card.classList.remove('show');
-        });
-        
-        // Reset area activity
-        areaActivity.classList.remove('show');
+        // Only reset if not already showing content
+        if (!areaActivity.classList.contains('show')) {
+            feedCards.forEach(card => {
+                card.classList.remove('show');
+            });
+            areaActivity.classList.remove('show');
+        }
     }
     
     // Add hover effects to feed cards
@@ -102,21 +101,21 @@ document.addEventListener('DOMContentLoaded', function() {
     // Click handler
     demoButton.addEventListener('click', startCommunityDemo);
     
-    // Auto-demo every 15 seconds
+    // Auto-demo only once, then keep content visible
+    let hasAutoPlayed = false;
     let autoTimer = setInterval(() => {
-        if (!isAnimating) {
+        if (!isAnimating && !hasAutoPlayed) {
             startCommunityDemo();
+            hasAutoPlayed = true;
+            clearInterval(autoTimer);
         }
     }, 15000);
     
-    // Clear auto timer on user interaction
+    // Manual trigger still works
     demoButton.addEventListener('click', () => {
-        clearInterval(autoTimer);
-        autoTimer = setInterval(() => {
-            if (!isAnimating) {
-                startCommunityDemo();
-            }
-        }, 20000);
+        if (!isAnimating) {
+            startCommunityDemo();
+        }
     });
     
     // Initial demo after 3 seconds
