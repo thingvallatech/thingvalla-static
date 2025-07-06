@@ -5,6 +5,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const areaActivity = document.getElementById('areaActivity');
     const feedCards = document.querySelectorAll('.feed-card');
     const ctaSection = document.getElementById('ctaSection');
+    const interactiveMap = document.getElementById('interactiveMap');
+    const activityPopup = document.getElementById('activityPopup');
     
     let isAnimating = false;
     
@@ -18,6 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Show area activity first
         setTimeout(() => {
             areaActivity.classList.add('show');
+            startMapInteractions();
         }, 500);
         
         // Show feed cards one by one
@@ -80,6 +83,208 @@ document.addEventListener('DOMContentLoaded', function() {
             areaActivity.classList.remove('show');
         }
     }
+    
+    // Advanced Map Interactions
+    function startMapInteractions() {
+        // Simulate GPS tracking with dynamic coordinates
+        animateGPSTracking();
+        
+        // Interactive popup system
+        setupMapClickHandlers();
+        
+        // Dynamic hotspot intensity based on activity
+        simulateActivityData();
+        
+        // Parallax effect on scroll
+        if (typeof window !== 'undefined') {
+            setupParallaxEffect();
+        }
+    }
+    
+    function animateGPSTracking() {
+        const gpsDots = document.querySelectorAll('.gps-dot');
+        
+        gpsDots.forEach((dot, index) => {
+            // Create trail effect
+            setInterval(() => {
+                createGPSTrail(dot);
+            }, 2000 + (index * 500));
+            
+            // Simulate movement with micro-animations
+            simulateGPSMovement(dot, index);
+        });
+    }
+    
+    function createGPSTrail(dot) {
+        const trail = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+        const cx = dot.getAttribute('cx');
+        const cy = dot.getAttribute('cy');
+        
+        trail.setAttribute('cx', cx);
+        trail.setAttribute('cy', cy);
+        trail.setAttribute('r', '3');
+        trail.setAttribute('fill', 'none');
+        trail.setAttribute('stroke', '#00ff88');
+        trail.setAttribute('stroke-width', '1');
+        trail.setAttribute('opacity', '0.8');
+        trail.style.animation = 'trailExpand 2s ease-out forwards';
+        
+        dot.parentNode.insertBefore(trail, dot);
+        
+        setTimeout(() => {
+            if (trail.parentNode) {
+                trail.parentNode.removeChild(trail);
+            }
+        }, 2000);
+    }
+    
+    function simulateGPSMovement(dot, index) {
+        const originalCx = parseFloat(dot.getAttribute('cx'));
+        const originalCy = parseFloat(dot.getAttribute('cy'));
+        let phase = 0;
+        
+        setInterval(() => {
+            phase += 0.1;
+            const offsetX = Math.sin(phase + index) * 2;
+            const offsetY = Math.cos(phase + index * 0.7) * 1.5;
+            
+            dot.setAttribute('cx', originalCx + offsetX);
+            dot.setAttribute('cy', originalCy + offsetY);
+        }, 100);
+    }
+    
+    function setupMapClickHandlers() {
+        const hotspots = document.querySelectorAll('.hotspot');
+        const popupData = [
+            { unit: 'Unit 3B2', user: 'BuckHunter47', activity: 'Trail cam activity', time: '2 hours ago' },
+            { unit: 'Unit 2K1', user: 'OutdoorQueen', activity: 'Recent sighting', time: '4 hours ago' },
+            { unit: 'Unit 1A1', user: 'TrailWatcher', activity: 'Photo uploaded', time: '6 hours ago' }
+        ];
+        
+        hotspots.forEach((hotspot, index) => {
+            // Create invisible clickable area
+            const clickArea = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+            clickArea.setAttribute('cx', hotspot.getAttribute('cx'));
+            clickArea.setAttribute('cy', hotspot.getAttribute('cy'));
+            clickArea.setAttribute('r', '20');
+            clickArea.setAttribute('fill', 'transparent');
+            clickArea.style.cursor = 'pointer';
+            clickArea.style.pointerEvents = 'all';
+            
+            hotspot.parentNode.insertBefore(clickArea, hotspot);
+            
+            clickArea.addEventListener('click', () => {
+                showActivityPopup(popupData[index], hotspot);
+            });
+            
+            // Auto-show popup after delay
+            setTimeout(() => {
+                if (index === 0) { // Show first popup automatically
+                    showActivityPopup(popupData[index], hotspot);
+                    
+                    setTimeout(() => {
+                        hideActivityPopup();
+                    }, 3000);
+                }
+            }, 2000);
+        });
+    }
+    
+    function showActivityPopup(data, hotspot) {
+        const popup = document.getElementById('activityPopup');
+        const cx = parseFloat(hotspot.getAttribute('cx'));
+        const cy = parseFloat(hotspot.getAttribute('cy'));
+        
+        // Update popup content
+        popup.querySelector('.unit-name').textContent = data.unit;
+        popup.querySelector('.activity-time').textContent = data.time;
+        popup.querySelector('.hunter-username').textContent = data.user;
+        popup.querySelector('.activity-type').textContent = data.activity;
+        
+        // Position popup relative to hotspot
+        popup.style.left = `${(cx / 300) * 100}%`;
+        popup.style.top = `${(cy / 200) * 100}%`;
+        
+        popup.classList.add('show');
+    }
+    
+    function hideActivityPopup() {
+        const popup = document.getElementById('activityPopup');
+        popup.classList.remove('show');
+    }
+    
+    function simulateActivityData() {
+        const hotspots = document.querySelectorAll('.hotspot');
+        
+        setInterval(() => {
+            hotspots.forEach((hotspot, index) => {
+                // Randomly intensify hotspots
+                if (Math.random() > 0.7) {
+                    hotspot.style.animation = 'hotspotIntense 1s ease-in-out';
+                    setTimeout(() => {
+                        hotspot.style.animation = `hotspotPulse 3s infinite ease-in-out`;
+                        hotspot.style.animationDelay = `${index}s`;
+                    }, 1000);
+                }
+            });
+        }, 5000);
+    }
+    
+    function setupParallaxEffect() {
+        let ticking = false;
+        
+        function updateParallax() {
+            const scrolled = window.pageYOffset;
+            const mapElement = document.querySelector('.interactive-map');
+            
+            if (mapElement) {
+                const rect = mapElement.getBoundingClientRect();
+                const inView = rect.top < window.innerHeight && rect.bottom > 0;
+                
+                if (inView) {
+                    const parallaxSpeed = scrolled * 0.1;
+                    const radarSweep = document.querySelector('.radar-sweep');
+                    
+                    if (radarSweep) {
+                        radarSweep.style.transform = `rotate(${parallaxSpeed % 360}deg)`;
+                    }
+                }
+            }
+            ticking = false;
+        }
+        
+        function requestTick() {
+            if (!ticking) {
+                requestAnimationFrame(updateParallax);
+                ticking = true;
+            }
+        }
+        
+        window.addEventListener('scroll', requestTick);
+    }
+    
+    // Add custom CSS animations for trails
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes trailExpand {
+            0% { r: 3; opacity: 0.8; stroke-width: 1; }
+            100% { r: 12; opacity: 0; stroke-width: 0.5; }
+        }
+        
+        @keyframes hotspotIntense {
+            0%, 100% { r: 8; opacity: 0.6; }
+            50% { r: 25; opacity: 1; }
+        }
+        
+        .interactive-map:hover .radar-sweep {
+            animation-duration: 2s !important;
+        }
+        
+        .interactive-map:hover .gps-dot {
+            animation-duration: 1s !important;
+        }
+    `;
+    document.head.appendChild(style);
     
     // Add hover effects to feed cards
     feedCards.forEach(card => {

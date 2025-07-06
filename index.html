@@ -84,23 +84,91 @@
                         </div>
                         
                         <div class="area-activity" id="areaActivity">
-                            <h3>Discover Your Area</h3>
-                            <div class="area-features">
-                                <div class="feature-item">
-                                    <span class="feature-icon">🗺️</span>
-                                    <span class="feature-text">See what's happening in your hunting units</span>
+                            <h3>Live Activity Map</h3>
+                            <div class="interactive-map" id="interactiveMap">
+                                <svg viewBox="0 0 300 200" class="map-svg">
+                                    <!-- Terrain background -->
+                                    <defs>
+                                        <pattern id="terrain" patternUnits="userSpaceOnUse" width="4" height="4">
+                                            <rect width="4" height="4" fill="#2d5016"/>
+                                            <circle cx="2" cy="2" r="0.5" fill="#3d6b2a" opacity="0.6"/>
+                                        </pattern>
+                                        <filter id="glow">
+                                            <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+                                            <feMerge> 
+                                                <feMergeNode in="coloredBlur"/>
+                                                <feMergeNode in="SourceGraphic"/>
+                                            </feMerge>
+                                        </filter>
+                                        <radialGradient id="hotspot" cx="50%" cy="50%" r="50%">
+                                            <stop offset="0%" style="stop-color:#ff4444;stop-opacity:0.8"/>
+                                            <stop offset="70%" style="stop-color:#ff8844;stop-opacity:0.4"/>
+                                            <stop offset="100%" style="stop-color:#ffaa44;stop-opacity:0"/>
+                                        </radialGradient>
+                                    </defs>
+                                    
+                                    <!-- Map background -->
+                                    <rect width="300" height="200" fill="url(#terrain)"/>
+                                    
+                                    <!-- Unit boundaries -->
+                                    <path d="M 50 50 L 150 45 L 155 80 L 60 85 Z" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="1" stroke-dasharray="2,2"/>
+                                    <path d="M 150 45 L 250 50 L 245 90 L 155 80 Z" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="1" stroke-dasharray="2,2"/>
+                                    <path d="M 60 85 L 155 80 L 160 140 L 70 145 Z" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="1" stroke-dasharray="2,2"/>
+                                    <path d="M 155 80 L 245 90 L 240 150 L 160 140 Z" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="1" stroke-dasharray="2,2"/>
+                                    
+                                    <!-- Unit labels -->
+                                    <text x="100" y="65" fill="rgba(255,255,255,0.6)" font-size="10" text-anchor="middle">3B2</text>
+                                    <text x="200" y="70" fill="rgba(255,255,255,0.6)" font-size="10" text-anchor="middle">2K1</text>
+                                    <text x="110" y="115" fill="rgba(255,255,255,0.6)" font-size="10" text-anchor="middle">1A1</text>
+                                    <text x="200" y="120" fill="rgba(255,255,255,0.6)" font-size="10" text-anchor="middle">4C3</text>
+                                    
+                                    <!-- Activity hotspots -->
+                                    <circle class="hotspot hotspot-1" cx="100" cy="60" r="0" fill="url(#hotspot)" filter="url(#glow)"/>
+                                    <circle class="hotspot hotspot-2" cx="200" cy="65" r="0" fill="url(#hotspot)" filter="url(#glow)"/>
+                                    <circle class="hotspot hotspot-3" cx="110" cy="110" r="0" fill="url(#hotspot)" filter="url(#glow)"/>
+                                    
+                                    <!-- GPS tracking dots -->
+                                    <circle class="gps-dot dot-1" cx="90" cy="55" r="0" fill="#00ff88" filter="url(#glow)"/>
+                                    <circle class="gps-dot dot-2" cx="195" cy="70" r="0" fill="#00ff88" filter="url(#glow)"/>
+                                    <circle class="gps-dot dot-3" cx="115" cy="105" r="0" fill="#00ff88" filter="url(#glow)"/>
+                                    <circle class="gps-dot dot-4" cx="205" cy="115" r="0" fill="#00ff88" filter="url(#glow)"/>
+                                    
+                                    <!-- Scanning radar effect -->
+                                    <g class="radar-sweep" transform-origin="150 100">
+                                        <path d="M 150 100 L 150 50 A 50 50 0 0 1 200 100 Z" fill="rgba(0,255,136,0.1)" opacity="0"/>
+                                    </g>
+                                </svg>
+                                
+                                <div class="map-overlay">
+                                    <div class="live-indicator">
+                                        <div class="pulse-dot"></div>
+                                        <span>LIVE</span>
+                                    </div>
+                                    
+                                    <div class="activity-popup" id="activityPopup">
+                                        <div class="popup-content">
+                                            <div class="popup-header">
+                                                <span class="unit-name">Unit 3B2</span>
+                                                <span class="activity-time">2 hours ago</span>
+                                            </div>
+                                            <div class="popup-body">
+                                                <span class="hunter-username">BuckHunter47</span>
+                                                <span class="activity-type">Trail cam activity</span>
+                                            </div>
+                                        </div>
+                                        <div class="popup-arrow"></div>
+                                    </div>
                                 </div>
-                                <div class="feature-item">
-                                    <span class="feature-icon">👥</span>
-                                    <span class="feature-text">Connect with hunters in your region</span>
+                            </div>
+                            
+                            <div class="map-features">
+                                <div class="feature-pill">
+                                    <span class="feature-dot" style="background: #00ff88;"></span>
+                                    <span>Real-time GPS tracking</span>
                                 </div>
-                                <div class="feature-item">
-                                    <span class="feature-icon">📸</span>
-                                    <span class="feature-text">Organize & analyze trail camera images</span>
-                                </div>
-                                <div class="feature-item">
-                                    <span class="feature-icon">🔥</span>
-                                    <span class="feature-text">Find historical hot spots</span>
+                                <div class="feature-pill">
+                                    <span class="feature-dot" style="background: #ff4444;"></span>
+                                    <span>Activity hotspots</span>
                                 </div>
                             </div>
                         </div>
