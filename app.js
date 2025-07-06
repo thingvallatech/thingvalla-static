@@ -1,214 +1,370 @@
-// Professional RackMap Interactive Experience
+// RackMap Social Hunting Platform Demo
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize sophisticated map interactions
-    initializeMapVisualization();
-    initializeDataUpdates();
-    initializeFeedAnimations();
+    initializeSocialFeed();
+    initializeAreaDiscovery();
+    initializeInteractions();
+    initializeAnimations();
     
-    // Map Visualization System
-    function initializeMapVisualization() {
-        const huntingUnits = document.querySelectorAll('.hunting-unit');
-        const unitInfoPanel = document.getElementById('unitInfoPanel');
+    // Social Feed Simulation
+    function initializeSocialFeed() {
+        const huntCards = document.querySelectorAll('.hunt-card');
         
-        // Unit data
-        const unitData = {
-            '1': { name: 'Western Badlands', activity: 65, photos: 28, peak: '6-8 AM', species: 'Mule Deer' },
-            '3A': { name: 'Little Missouri', activity: 45, photos: 19, peak: '5-7 AM', species: 'Whitetail' },
-            '3B': { name: 'South Badlands', activity: 72, photos: 34, peak: '5-7 AM', species: 'Whitetail' },
-            '2A': { name: 'Central Plains', activity: 85, photos: 42, peak: '5-7 AM', species: 'Whitetail' },
-            '2B': { name: 'North Central', activity: 58, photos: 31, peak: '6-8 AM', species: 'Whitetail' },
-            '2G': { name: 'Red River Valley', activity: 78, photos: 38, peak: '5-8 AM', species: 'Whitetail' }
-        };
+        // Simulate real-time activity
+        setInterval(() => {
+            updateLikeCounts();
+            simulateNewActivity();
+        }, 8000);
         
-        huntingUnits.forEach(unit => {
-            unit.addEventListener('mouseenter', function() {
-                const unitId = this.getAttribute('data-unit');
-                const data = unitData[unitId];
-                
-                if (data) {
-                    updateUnitInfoPanel(unitId, data);
+        // Add interaction handlers
+        huntCards.forEach(card => {
+            const likeBtn = card.querySelector('.action-btn');
+            if (likeBtn && !likeBtn.classList.contains('liked')) {
+                likeBtn.addEventListener('click', function() {
+                    this.classList.add('liked');
+                    const count = this.querySelector('span');
+                    const currentCount = parseInt(count.textContent);
+                    count.textContent = currentCount + 1;
+                    
+                    // Visual feedback
+                    this.style.transform = 'scale(1.2)';
+                    setTimeout(() => {
+                        this.style.transform = 'scale(1)';
+                    }, 150);
+                });
+            }
+        });
+    }
+    
+    function updateLikeCounts() {
+        const likeBtns = document.querySelectorAll('.action-btn:not(.liked)');
+        likeBtns.forEach(btn => {
+            if (Math.random() > 0.8) {
+                const countEl = btn.querySelector('span');
+                if (countEl) {
+                    const current = parseInt(countEl.textContent);
+                    countEl.textContent = current + Math.floor(Math.random() * 3) + 1;
+                    
+                    // Subtle animation
+                    countEl.style.color = '#0066FF';
+                    setTimeout(() => {
+                        countEl.style.color = '';
+                    }, 1000);
                 }
+            }
+        });
+    }
+    
+    function simulateNewActivity() {
+        const activityPins = document.querySelectorAll('.activity-pin .activity-count');
+        activityPins.forEach(pin => {
+            if (Math.random() > 0.7) {
+                const current = parseInt(pin.textContent);
+                pin.textContent = current + 1;
+                
+                // Pulse animation
+                const circle = pin.parentElement.querySelector('circle:last-child');
+                if (circle) {
+                    circle.style.fill = '#00ff88';
+                    setTimeout(() => {
+                        circle.style.fill = '#0066FF';
+                    }, 2000);
+                }
+            }
+        });
+    }
+    
+    // Area Discovery Map
+    function initializeAreaDiscovery() {
+        const activityPins = document.querySelectorAll('.activity-pin');
+        
+        activityPins.forEach(pin => {
+            pin.addEventListener('click', function() {
+                const count = this.querySelector('.activity-count').textContent;
+                showAreaDetails(count);
             });
             
-            unit.addEventListener('click', function() {
-                const unitId = this.getAttribute('data-unit');
-                console.log(`Unit ${unitId} selected for detailed view`);
+            pin.addEventListener('mouseenter', function() {
+                this.style.cursor = 'pointer';
+                this.style.transform = 'scale(1.1)';
+            });
+            
+            pin.addEventListener('mouseleave', function() {
+                this.style.transform = 'scale(1)';
             });
         });
         
-        function updateUnitInfoPanel(unitId, data) {
-            unitInfoPanel.querySelector('h4').textContent = `Unit ${unitId} - ${data.name}`;
-            unitInfoPanel.querySelector('.activity-fill').style.width = `${data.activity}%`;
-            
-            const metrics = unitInfoPanel.querySelectorAll('.metric-item .value');
-            metrics[0].textContent = data.photos;
-            metrics[1].textContent = data.peak;
-            metrics[2].textContent = data.species;
-            
-            unitInfoPanel.style.opacity = '1';
-            unitInfoPanel.style.transform = 'translateY(0)';
+        // Update stats periodically
+        setInterval(() => {
+            updateMapStats();
+        }, 12000);
+    }
+    
+    function showAreaDetails(count) {
+        const tooltip = document.createElement('div');
+        tooltip.style.cssText = `
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.9);
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 0.5rem;
+            z-index: 1000;
+            font-size: 0.9rem;
+            text-align: center;
+        `;
+        tooltip.innerHTML = `
+            <strong>${count} hunters active</strong><br>
+            <span style="color: #ccc;">Click "Explore Your Area" to see more details</span>
+        `;
+        
+        document.body.appendChild(tooltip);
+        
+        setTimeout(() => {
+            if (document.body.contains(tooltip)) {
+                document.body.removeChild(tooltip);
+            }
+        }, 3000);
+    }
+    
+    function updateMapStats() {
+        const statNumbers = document.querySelectorAll('.stat-number');
+        statNumbers.forEach((stat, index) => {
+            if (index < 2 && Math.random() > 0.6) {
+                const current = parseInt(stat.textContent);
+                const change = Math.floor(Math.random() * 5) + 1;
+                animateNumber(stat, current + change);
+            }
+        });
+    }
+    
+    // Interactive Elements
+    function initializeInteractions() {
+        // Photo sharing demo button
+        const shareBtn = document.getElementById('sharePhotoDemo');
+        if (shareBtn) {
+            shareBtn.addEventListener('click', function() {
+                simulatePhotoShare();
+            });
+        }
+        
+        // Filter button
+        const filterBtn = document.querySelector('.filter-btn');
+        if (filterBtn) {
+            filterBtn.addEventListener('click', function() {
+                this.style.background = 'rgba(255, 255, 255, 0.2)';
+                this.textContent = 'Filtering...';
+                
+                setTimeout(() => {
+                    this.style.background = 'rgba(255, 255, 255, 0.1)';
+                    this.innerHTML = `
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="white">
+                            <path d="M2 4 L14 4 M4 8 L12 8 M6 12 L10 12" stroke="white" stroke-width="2"/>
+                        </svg>
+                        Filter
+                    `;
+                }, 2000);
+            });
+        }
+        
+        // Tab navigation
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        tabBtns.forEach((btn, index) => {
+            btn.addEventListener('click', function() {
+                tabBtns.forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                
+                if (index === 1) {
+                    simulateMapView();
+                } else if (index === 2) {
+                    simulatePhotoShare();
+                }
+            });
+        });
+    }
+    
+    function simulatePhotoShare() {
+        const modal = document.createElement('div');
+        modal.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+        `;
+        
+        modal.innerHTML = `
+            <div style="
+                background: white;
+                padding: 2rem;
+                border-radius: 1rem;
+                text-align: center;
+                max-width: 400px;
+                width: 90%;
+            ">
+                <h3 style="margin-bottom: 1rem;">Share Your Hunt</h3>
+                <div class="upload-area" style="
+                    width: 200px;
+                    height: 200px;
+                    background: #f8f9fa;
+                    border: 2px dashed #dee2e6;
+                    border-radius: 0.5rem;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    margin: 0 auto 1rem;
+                    cursor: pointer;
+                ">
+                    Click to upload photo
+                </div>
+                <input type="text" placeholder="Add location (Unit 2A)" style="
+                    width: 100%;
+                    padding: 0.5rem;
+                    border: 1px solid #dee2e6;
+                    border-radius: 0.5rem;
+                    margin-bottom: 1rem;
+                ">
+                <div style="display: flex; gap: 1rem; justify-content: center;">
+                    <button class="cancel-btn" style="
+                        background: #6c757d;
+                        color: white;
+                        border: none;
+                        padding: 0.5rem 1rem;
+                        border-radius: 0.5rem;
+                        cursor: pointer;
+                    ">Cancel</button>
+                    <button class="share-btn" style="
+                        background: #0066FF;
+                        color: white;
+                        border: none;
+                        padding: 0.5rem 1rem;
+                        border-radius: 0.5rem;
+                        cursor: pointer;
+                    ">Share Hunt</button>
+                </div>
+            </div>
+        `;
+        
+        // Add event listeners
+        const uploadArea = modal.querySelector('.upload-area');
+        uploadArea.addEventListener('click', function() {
+            this.style.background = '#e3f2fd';
+            this.innerHTML = '📸 Photo Selected!';
+        });
+        
+        const cancelBtn = modal.querySelector('.cancel-btn');
+        cancelBtn.addEventListener('click', function() {
+            document.body.removeChild(modal);
+        });
+        
+        const shareBtn = modal.querySelector('.share-btn');
+        shareBtn.addEventListener('click', function() {
+            this.textContent = 'Sharing...';
+            this.disabled = true;
+            setTimeout(() => {
+                document.body.removeChild(modal);
+                showShareSuccess();
+            }, 2000);
+        });
+        
+        document.body.appendChild(modal);
+    }
+    
+    function showShareSuccess() {
+        const success = document.createElement('div');
+        success.style.cssText = `
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            background: #28a745;
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 0.5rem;
+            z-index: 2000;
+            box-shadow: 0 5px 20px rgba(40, 167, 69, 0.3);
+            transition: all 0.3s ease;
+        `;
+        success.textContent = '✅ Hunt shared with your network!';
+        
+        document.body.appendChild(success);
+        
+        setTimeout(() => {
+            success.style.transform = 'translateX(400px)';
+            success.style.opacity = '0';
+            setTimeout(() => {
+                if (document.body.contains(success)) {
+                    document.body.removeChild(success);
+                }
+            }, 300);
+        }, 3000);
+    }
+    
+    function simulateMapView() {
+        const mapContainer = document.querySelector('.discovery-map');
+        if (mapContainer) {
+            mapContainer.style.transform = 'scale(1.05)';
+            setTimeout(() => {
+                mapContainer.style.transform = 'scale(1)';
+            }, 300);
         }
     }
     
-    // Real-time Data Updates
-    function initializeDataUpdates() {
-        const activeHunters = document.getElementById('activeHunters');
-        const photosShared = document.getElementById('photosShared');
-        
-        // Simulate real-time data updates
-        let hunterCount = 247;
-        let photoCount = 1842;
-        
-        setInterval(() => {
-            // Random fluctuation in active hunters
-            const hunterChange = Math.floor(Math.random() * 10) - 5;
-            hunterCount = Math.max(200, Math.min(300, hunterCount + hunterChange));
-            
-            if (activeHunters) {
-                animateNumber(activeHunters, hunterCount);
-            }
-            
-            // Increment photos occasionally
-            if (Math.random() > 0.7) {
-                photoCount += Math.floor(Math.random() * 3) + 1;
-                if (photosShared) {
-                    animateNumber(photosShared, photoCount, true);
+    // Animations
+    function initializeAnimations() {
+        const featureCards = document.querySelectorAll('.feature-card');
+        const cardObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }, index * 100);
                 }
-            }
-        }, 5000);
+            });
+        }, { threshold: 0.2 });
+        
+        featureCards.forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+            cardObserver.observe(card);
+        });
+        
+        // Hunt cards entrance animation
+        const huntCards = document.querySelectorAll('.hunt-card');
+        huntCards.forEach((card, index) => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            
+            setTimeout(() => {
+                card.style.transition = 'all 0.5s ease';
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0)';
+            }, index * 200 + 1000);
+        });
     }
     
-    // Number animation helper
-    function animateNumber(element, target, formatK = false) {
-        const current = parseInt(element.textContent.replace(/[^0-9]/g, ''));
+    // Utility function for number animation
+    function animateNumber(element, target) {
+        const current = parseInt(element.textContent);
         const increment = (target - current) / 20;
         let step = 0;
         
         const timer = setInterval(() => {
             step++;
             const value = Math.round(current + (increment * step));
-            
-            if (formatK && value > 999) {
-                element.textContent = (value / 1000).toFixed(1) + 'K';
-            } else {
-                element.textContent = value;
-            }
+            element.textContent = value;
             
             if (step >= 20) {
                 clearInterval(timer);
-                if (formatK && target > 999) {
-                    element.textContent = (target / 1000).toFixed(1) + 'K';
-                } else {
-                    element.textContent = target;
-                }
+                element.textContent = target;
             }
         }, 50);
     }
-    
-    // Feed Animations
-    function initializeFeedAnimations() {
-        const feedCards = document.querySelectorAll('.feed-card');
-        const observerOptions = {
-            threshold: 0.3,
-            rootMargin: '0px 0px -100px 0px'
-        };
-        
-        const feedObserver = new IntersectionObserver((entries) => {
-            entries.forEach((entry, index) => {
-                if (entry.isIntersecting) {
-                    setTimeout(() => {
-                        entry.target.classList.add('visible');
-                        entry.target.style.opacity = '1';
-                        entry.target.style.transform = 'translateY(0)';
-                    }, index * 150);
-                }
-            });
-        }, observerOptions);
-        
-        feedCards.forEach(card => {
-            card.style.opacity = '0';
-            card.style.transform = 'translateY(20px)';
-            card.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
-            feedObserver.observe(card);
-        });
-        
-        // Add sophisticated hover effects
-        feedCards.forEach(card => {
-            card.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-2px)';
-                this.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.2)';
-            });
-            
-            card.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(0)';
-                this.style.boxShadow = 'none';
-            });
-        });
-    }
-    
-    // CTA Button Enhancement
-    const ctaButton = document.querySelector('.cta-button');
-    if (ctaButton) {
-        ctaButton.addEventListener('mouseenter', function() {
-            this.style.transform = 'scale(1.05)';
-        });
-        
-        ctaButton.addEventListener('mouseleave', function() {
-            this.style.transform = 'scale(1)';
-        });
-    }
-    
-    // Demo Button
-    const demoButton = document.getElementById('demoButton');
-    if (demoButton) {
-        demoButton.addEventListener('click', function() {
-            const ctaSection = document.getElementById('ctaSection');
-            if (ctaSection) {
-                ctaSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            }
-        });
-    }
-    
-    // Add professional animations
-    const style = document.createElement('style');
-    style.textContent = `
-        .hunting-unit path {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .pulse-point {
-            transform-origin: center;
-        }
-        
-        .data-panel {
-            animation: fadeIn 0.8s ease forwards;
-        }
-        
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(-10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        .feed-card.visible .deer-silhouette {
-            animation: fadeInScale 0.8s ease forwards;
-        }
-        
-        @keyframes fadeInScale {
-            from {
-                opacity: 0;
-                transform: scale(0.8);
-            }
-            to {
-                opacity: 0.6;
-                transform: scale(1.5);
-            }
-        }
-    `;
-    document.head.appendChild(style);
 });

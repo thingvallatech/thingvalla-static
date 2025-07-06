@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="RackMap - Social hunting discovery platform. Connect with hunters, share your success, discover area activity, and build your hunting network.">
+    <meta name="description" content="Join thousands of hunters sharing their catches and discovering the best hunting spots. See what's happening in your hunting units and build your hunting network.">
     <meta name="keywords" content="Thingvalla, technology, dashboard, mapping, digital hub">
-    <title>Thingvalla - Your Digital Hub</title>
+    <title>RackMap - Social Hunting Discovery Platform</title>
     <link rel="icon" type="image/png" href="favicon.png">
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -20,340 +20,370 @@
                 </div>
             </nav>
             <div class="hero-content">
-                <h2>Your Hunting Community Awaits</h2>
-                <p>Connect with hunters everywhere, share your success, and discover what's happening in your area</p>
+                <h1>See What's Happening in Your Hunting Area</h1>
+                <p>Join thousands of hunters sharing their catches and discovering the best spots</p>
                 <div class="demo-container">
-                    <div class="community-preview">
-                        <div class="hunt-feed" id="huntFeed">
-                            <div class="feed-card" id="card1">
-                                <div class="hunter-info">
-                                    <div class="avatar">
-                                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-                                            <circle cx="16" cy="16" r="15" fill="#1a2332"/>
-                                            <path d="M16 8 C12 8 10 11 10 14 C10 17 12 18 16 20 C20 18 22 17 22 14 C22 11 20 8 16 8 Z" fill="#0066FF"/>
+                    <div class="demo-preview">
+                        <!-- Mobile Hunt Feed -->
+                        <div class="mobile-device">
+                            <div class="device-frame">
+                                <div class="status-bar">
+                                    <span class="time">9:41 AM</span>
+                                    <div class="status-icons">
+                                        <svg width="17" height="12" viewBox="0 0 17 12" fill="white">
+                                            <rect x="0" y="8" width="3" height="4" rx="0.5"/>
+                                            <rect x="5" y="6" width="3" height="6" rx="0.5"/>
+                                            <rect x="10" y="4" width="3" height="8" rx="0.5"/>
+                                            <rect x="15" y="2" width="3" height="10" rx="0.5"/>
+                                        </svg>
+                                        <svg width="24" height="12" viewBox="0 0 24 12" fill="white">
+                                            <rect x="0" y="2" width="20" height="8" rx="2" stroke="white" fill="none"/>
+                                            <rect x="2" y="4" width="14" height="4" rx="1" fill="white"/>
+                                            <rect x="21" y="5" width="2" height="2" rx="0.5" fill="white"/>
                                         </svg>
                                     </div>
-                                    <div class="hunter-details">
-                                        <span class="hunter-name">BuckHunter47</span>
-                                        <span class="hunt-location">Unit 2A • 2 hours ago</span>
-                                    </div>
                                 </div>
-                                <div class="hunt-image">
-                                    <div class="image-placeholder">
-                                        <div class="deer-silhouette">
-                                            <svg width="80" height="60" viewBox="0 0 80 60" fill="none">
-                                                <path d="M40 45 C35 45 30 40 30 35 L30 25 C30 20 35 15 40 15 C45 15 50 20 50 25 L50 35 C50 40 45 45 40 45 Z" fill="#2a3342"/>
-                                                <path d="M35 15 L32 8 M45 15 L48 8 M32 8 L30 5 M48 8 L50 5" stroke="#2a3342" stroke-width="2"/>
-                                                <circle cx="36" cy="25" r="1" fill="#1a2332"/>
-                                                <circle cx="44" cy="25" r="1" fill="#1a2332"/>
+                                
+                                <div class="app-header">
+                                    <h2>RackMap</h2>
+                                    <div class="header-actions">
+                                        <button class="location-filter">
+                                            <svg width="16" height="16" viewBox="0 0 16 16" fill="#0066FF">
+                                                <path d="M8 0 C5 0 2 3 2 6 C2 10 8 16 8 16 S14 10 14 6 C14 3 11 0 8 0 Z M8 8 C6.5 8 5 6.5 5 5 S6.5 2 8 2 S11 3.5 11 5 S9.5 8 8 8 Z"/>
                                             </svg>
+                                            Unit 2A
+                                        </button>
+                                        <button class="camera-btn">
+                                            <svg width="20" height="20" viewBox="0 0 20 20" fill="#0066FF">
+                                                <path d="M10 12 C11.5 12 13 10.5 13 9 S11.5 6 10 6 S7 7.5 7 9 S8.5 12 10 12 Z"/>
+                                                <path d="M17 5 L15 3 L13 3 L11 1 L9 1 L7 3 L5 3 L3 5 L3 15 C3 16 4 17 5 17 L15 17 C16 17 17 16 17 15 L17 5 Z M10 14 C7.5 14 5 11.5 5 9 S7.5 4 10 4 S15 6.5 15 9 S12.5 14 10 14 Z"/>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <div class="hunt-feed">
+                                    <!-- Hunt Card 1 -->
+                                    <div class="hunt-card">
+                                        <div class="hunter-header">
+                                            <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMjAiIGN5PSIyMCIgcj0iMjAiIGZpbGw9IiMzMzY2OTkiLz4KPHBhdGggZD0iTTIwIDEyQzE3IDEyIDE0IDE1IDE0IDE4QzE0IDIxIDE3IDIzIDIwIDI1QzIzIDIzIDI2IDIxIDI2IDE4QzI2IDE1IDIzIDEyIDIwIDEyWiIgZmlsbD0id2hpdGUiLz4KPC9zdmc+" alt="Hunter" class="hunter-avatar"/>
+                                            <div class="hunter-info">
+                                                <span class="hunter-name">MikeHunts22</span>
+                                                <span class="hunt-details">Unit 2A • 3 hours ago</span>
+                                            </div>
+                                            <button class="follow-btn">Follow</button>
                                         </div>
-                                        <div class="engagement-stats">
-                                            <span class="stat-item">
-                                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                                                    <path d="M8 14 L2 8 C0 6 0 3 2 1 C4 -1 7 0 8 2 C9 0 12 -1 14 1 C16 3 16 6 14 8 L8 14 Z" fill="#ff4444"/>
+                                        <div class="hunt-photo">
+                                            <img src="data:image/jpeg;base64,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AALqGKCBQRxRmGBhqOKTAQyEXAAAsBSBJMGQvXiVQWLBCCL7HaiQQ0JBFRhKJBFSpyHYoAsoBQikRZJVFQyJgB3piJqEgoECAICFmx5dTmnULkJKBCcwMWZOlcPMqSBdLJeVikwQQQQQQQRUIzOtlRJhA6U8jQEJHJB3Y5a9lSTOWMQKCpnQnAyNL4/V/xP/aAAwDAQACAAMAAAAQ888888888888888888888888888888888888888888888888gA8888888884UJJ588888888oBJN888888koBJJJx8888YmBJJJJLS888AFJJJJJJBj88cFJJJJJJBK880oJJJJJJJG8881BJJJJJJCk881WJJJJJJCk881aBJJJJJI+8881SJJJJJBG888zyBJJJJNH8888DaBJJJJ1888888CSJJJIS8888831BJJJBJk8888jdJJJJBd8888/nxJJJJBd8888e5hJJJJNJ88883ARJJJJC888884MpJJJJT888888cpJJJJZ8888884BJJJJw8888888dJJJB888888888xJJJb888888888RJJD8888888888hJIV8888888888oIc88888888888848888888888888888888888888888888888//xAAgEQACAgICAgMAAAAAAAAAAAAAAREhEDEgQTBRQGBw/9oACAEDAQE/EPi+FWqJJJJJJJJJJJJJJJJLg7kkkkmfBRJJJJJJJJJJJJJJJJJJIhREKCNBGgjQKJJJJJJJLk5VJJJIiDKZJJ0tIkkkkkuSfJ9kkkkkkkkkkkmUSUySSSXJJJJJJJJJJJJJJBJJJJJJJJJJJJJL5KZQoNhsNhsNhsNmNMWJJJJJJJJJJJJJJJJJIjQ0NElQb+FKkqRoaGiNDQ0NDQ3JJJJJJJJJJJJJJJMNhsMxJJJJJJJJJJJJJJJLgkkyShFaNaFpEGmQaZBpkGg1hT8y+xdIWkQaOSkkk6GhoSEhIkQaJEGiRBokQaJEfaGhoaJ8j//EAB4RAQACAwEBAQEBAAAAAAAAAAEAERAhMSAwQVFA/9oACAECAQE/EPxP5jXdMYzYOzLly5cuXLly5cue7ly7ORvPKNWRAqXAqXLYs3BomhKlxO3aJqQiQjGDl2TUrEqJSZXXlr6Q5dECXLsQICIgoI0JUSrKEa/cNKRCIRlQ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" alt="Hunt Photo" />
+                                            <div class="species-tag">10-point Buck</div>
+                                        </div>
+                                        <div class="hunt-actions">
+                                            <button class="action-btn">
+                                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                                    <path d="M12 21 L3 12 C0 9 0 4 3 1 C6 -2 11 0 12 3 C13 0 18 -2 21 1 C24 4 24 9 21 12 L12 21 Z" stroke="#666" stroke-width="2"/>
                                                 </svg>
-                                                12
-                                            </span>
-                                            <span class="stat-item">
-                                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                                                    <path d="M2 8 C2 4 5 1 9 1 L9 1 C13 1 16 4 16 8 L16 12 C16 14 14 16 12 16 L2 16 L2 8 Z" stroke="#4a5568" stroke-width="1.5" fill="none"/>
+                                                <span>127</span>
+                                            </button>
+                                            <button class="action-btn">
+                                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                                    <path d="M3 12 C3 6 7 2 13 2 C19 2 23 6 23 12 L23 18 C23 20 21 22 19 22 L3 22 L3 12 Z" stroke="#666" stroke-width="2"/>
                                                 </svg>
-                                                3
-                                            </span>
+                                                <span>23</span>
+                                            </button>
+                                            <button class="action-btn">
+                                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                                    <path d="M22 2 L15 9 L22 9 L2 22 L9 15 L2 15 L22 2 Z" stroke="#666" stroke-width="2"/>
+                                                </svg>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Hunt Card 2 -->
+                                    <div class="hunt-card">
+                                        <div class="hunter-header">
+                                            <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMjAiIGN5PSIyMCIgcj0iMjAiIGZpbGw9IiM2NjMzOTkiLz4KPHBhdGggZD0iTTIwIDEyQzE3IDEyIDE0IDE1IDE0IDE4QzE0IDIxIDE3IDIzIDIwIDI1QzIzIDIzIDI2IDIxIDI2IDE4QzI2IDE1IDIzIDEyIDIwIDEyWiIgZmlsbD0id2hpdGUiLz4KPC9zdmc+" alt="Hunter" class="hunter-avatar"/>
+                                            <div class="hunter-info">
+                                                <span class="hunter-name">DakotaDeer92</span>
+                                                <span class="hunt-details">Unit 3B • 5 hours ago</span>
+                                            </div>
+                                            <button class="follow-btn following">Following</button>
+                                        </div>
+                                        <div class="hunt-photo">
+                                            <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCADIAMgDAREAAhEBAxEB/8QAGwABAQEBAQEBAQAAAAAAAAAAAAUEBgMBAgf/xAA2EAACAgECBAQDBgUFAQAAAAABAgADBAURBhIhMRNBUWEicYEHFDKRocEVI1Kx0SQzQmLh8P/EABgBAQEBAQEAAAAAAAAAAAAAAAABAgME/8QAIREBAQEBAAICAwEBAQAAAAAAAAERAhIhAzFBUWEiMhP/2gAMAwEAAhEDEQA/AP6pPe+cREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQOdbiWk8YNocCvLNIu8ct03K7b7enpMeXur4/auNqWKuMmW163xmfkFisQGPpM61cQ83jnScW17Km+47qAR5n/AOMXuT7XxySdb+0CjEwg+mBrch8Y0t4gKhSRtv8APeS9yT0vhqVb9qaJlJXiJbWtzn4W8PlPQ7Ant2kvf8XwWLvtL0SnT8XJrysW5skE11o+7EDz/wDJfKYeNQcn7Xse2nJOJpmVdZVu1fOyrz7eZ36ecl7n4XwrT/8AdOJXxNJCWPp1pLWjHDBH5fm3eNny1nOP1k/a7oNOdkY5uoNNKF2tLKAT6H16e8x5SLeTN+0fCzwlGn41ORc9Yf8A3QqDffYHffr7S+cPGptfHWnJp2k5GTkY1K5iE2Czm6N5AjbyEz5xfG6kVfafXk4+K+LpOXkl2Zb2QKfCAO3Ud5fJPC19J49wruIMfSKLcdnsr57XL7Kh7Hr6+X5yeUPGxX1DiHBwtS0/BybgmTncwoXbc7jz9B6TOVK0ajqWJpuOb867wqgdgSCdz6dPOF1L/wDGmj/xQ6a1+Oc4VizwvE6levb0/SU12kCIgIiICIiAiIgIiIHGt9ouE2s41OP9/OBfb4Ry6qGYb+g9d4yrLxGqvKqyKLci2u6kOiMrq29TdSW36dYzRRzcKrLZWe2wGukVqEcrzAHfZvXrKakvxdp51M4lqXU5WOhVbDX8LqQRs3y8u0izVTT+A9K0/KN2I2Tu6BdmtPQD0HaZ8I14xo1Lh3S83J+85WItt5HDOW33A+Uvi1bhmjacmnvlPQ72nJsN1nOd2JP7+kw6af0OXk4s0M6I+jnCuGAwJFBtJVT6jp3lvM/R5V809OqrrrRVRFCqo7ADsJplC1ThbR87La7Mww9jEnmFjqDv6gEAyYuqaYmOmCmEKgMZaw1YQnbYjffr3k1cYMnhbRcnCpxLtOrejG38IFPYEH5k/lDWviZNFdlNddddSCutBsqKBsBNRlO1zh7StUpFeq4wvVPwbsw2+m8vjKmpuL9nmg6Xk/esXDK3gghvEYgA+g36RORvutKa6cpmqq8WjAtFYdrCzBHAHb5gj85lqyT22J9m+h0Z4za8fkvDl+YWHlDHv09DKePmxP1/hHStWqrObi+Iyfw7jdW2/Xy6xqY12YGNi4+m/dMeqrwOXlNfLzA7+e/r7zSOG+zvhrTKcTNx9Q0/GyLRlWIlmSu72IB039h1kzftt11bh3SMnFGJkadjvjA7iq1VZenl17fnF5lfOJaOOHdLuw2Fde9Llha/4VDDc7CVJMQcD7KsHGyhkWZPi7IyeG6b1kH/AKkdJFnLrOH+HsHQKLKdNR1rd+ds252J/Pyi81LNdDEy5REBERAREQEREDxzsbHy8d6MutbKn/ErCJ6rCTaU9E0yodMKkdeuwJ/vJZKsvTQBtAqzRBERAREQEREBERAREQE1ABBERAREQEREBERAREQEREBERAREQEREDmOLdO1C7L07UNGdTl4FheoPuqP0H7/vFl9xeb9VQv4kx8fhqrWtRV8aywBVrCmxnY9QoEzY6b/EGr7Qsa/Cuvo0fVXRBzupqXmUb/iG7ddthF5uJ5TVDVtXwK8rh/UqGOVi3ZCmtGHKGJBHXc9JJ7TqXzs/rpYtiIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgJrBERNMkREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBE1gREy0REQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQERED/2Q==" alt="Hunt Photo" />
+                                            <div class="species-tag">Trophy Whitetail</div>
+                                        </div>
+                                        <div class="hunt-actions">
+                                            <button class="action-btn liked">
+                                                <svg width="24" height="24" viewBox="0 0 24 24" fill="#ff4444">
+                                                    <path d="M12 21 L3 12 C0 9 0 4 3 1 C6 -2 11 0 12 3 C13 0 18 -2 21 1 C24 4 24 9 21 12 L12 21 Z"/>
+                                                </svg>
+                                                <span>342</span>
+                                            </button>
+                                            <button class="action-btn">
+                                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                                    <path d="M3 12 C3 6 7 2 13 2 C19 2 23 6 23 12 L23 18 C23 20 21 22 19 22 L3 22 L3 12 Z" stroke="#666" stroke-width="2"/>
+                                                </svg>
+                                                <span>87</span>
+                                            </button>
+                                            <button class="action-btn">
+                                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                                    <path d="M22 2 L15 9 L22 9 L2 22 L9 15 L2 15 L22 2 Z" stroke="#666" stroke-width="2"/>
+                                                </svg>
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            
-                            <div class="feed-card" id="card2">
-                                <div class="hunter-info">
-                                    <div class="avatar">
-                                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-                                            <circle cx="16" cy="16" r="15" fill="#1a2332"/>
-                                            <path d="M16 8 C12 8 10 11 10 14 C10 17 12 18 16 20 C20 18 22 17 22 14 C22 11 20 8 16 8 Z" fill="#0066FF"/>
+                                
+                                <div class="tab-bar">
+                                    <button class="tab-btn active">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="#0066FF">
+                                            <path d="M3 12 L12 3 L21 12 L21 21 L15 21 L15 15 L9 15 L9 21 L3 21 Z"/>
                                         </svg>
-                                    </div>
-                                    <div class="hunter-details">
-                                        <span class="hunter-name">OutdoorQueen</span>
-                                        <span class="hunt-location">Unit 3B • 5 hours ago</span>
-                                    </div>
-                                </div>
-                                <div class="hunt-image">
-                                    <div class="image-placeholder">
-                                        <div class="deer-silhouette">
-                                            <svg width="80" height="60" viewBox="0 0 80 60" fill="none">
-                                                <path d="M40 45 C35 45 30 40 30 35 L30 25 C30 20 35 15 40 15 C45 15 50 20 50 25 L50 35 C50 40 45 45 40 45 Z" fill="#2a3342"/>
-                                                <path d="M35 15 L32 8 M45 15 L48 8 M32 8 L30 5 M48 8 L50 5" stroke="#2a3342" stroke-width="2"/>
-                                                <circle cx="36" cy="25" r="1" fill="#1a2332"/>
-                                                <circle cx="44" cy="25" r="1" fill="#1a2332"/>
-                                            </svg>
-                                        </div>
-                                        <div class="engagement-stats">
-                                            <span class="stat-item">
-                                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                                                    <path d="M8 14 L2 8 C0 6 0 3 2 1 C4 -1 7 0 8 2 C9 0 12 -1 14 1 C16 3 16 6 14 8 L8 14 Z" fill="#ff4444"/>
-                                                </svg>
-                                                8
-                                            </span>
-                                            <span class="stat-item">
-                                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                                                    <path d="M2 8 C2 4 5 1 9 1 L9 1 C13 1 16 4 16 8 L16 12 C16 14 14 16 12 16 L2 16 L2 8 Z" stroke="#4a5568" stroke-width="1.5" fill="none"/>
-                                                </svg>
-                                                5
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="feed-card" id="card3">
-                                <div class="hunter-info">
-                                    <div class="avatar">
-                                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-                                            <circle cx="16" cy="16" r="15" fill="#1a2332"/>
-                                            <path d="M16 8 C12 8 10 11 10 14 C10 17 12 18 16 20 C20 18 22 17 22 14 C22 11 20 8 16 8 Z" fill="#0066FF"/>
+                                    </button>
+                                    <button class="tab-btn">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                            <path d="M12 2 C10 2 8 4 8 6 C8 10 12 14 12 14 S16 10 16 6 C16 4 14 2 12 2 Z M12 8 C11 8 10 7 10 6 S11 4 12 4 S14 5 14 6 S13 8 12 8 Z" stroke="#666" stroke-width="2"/>
                                         </svg>
-                                    </div>
-                                    <div class="hunter-details">
-                                        <span class="hunter-name">TrailWatcher</span>
-                                        <span class="hunt-location">Unit 2G • 1 day ago</span>
-                                    </div>
-                                </div>
-                                <div class="hunt-image">
-                                    <div class="image-placeholder">
-                                        <div class="deer-silhouette">
-                                            <svg width="80" height="60" viewBox="0 0 80 60" fill="none">
-                                                <path d="M40 45 C35 45 30 40 30 35 L30 25 C30 20 35 15 40 15 C45 15 50 20 50 25 L50 35 C50 40 45 45 40 45 Z" fill="#2a3342"/>
-                                                <path d="M35 15 L32 8 M45 15 L48 8 M32 8 L30 5 M48 8 L50 5" stroke="#2a3342" stroke-width="2"/>
-                                                <circle cx="36" cy="25" r="1" fill="#1a2332"/>
-                                                <circle cx="44" cy="25" r="1" fill="#1a2332"/>
-                                            </svg>
-                                        </div>
-                                        <div class="engagement-stats">
-                                            <span class="stat-item">
-                                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                                                    <path d="M8 14 L2 8 C0 6 0 3 2 1 C4 -1 7 0 8 2 C9 0 12 -1 14 1 C16 3 16 6 14 8 L8 14 Z" fill="#ff4444"/>
-                                                </svg>
-                                                15
-                                            </span>
-                                            <span class="stat-item">
-                                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                                                    <path d="M2 8 C2 4 5 1 9 1 L9 1 C13 1 16 4 16 8 L16 12 C16 14 14 16 12 16 L2 16 L2 8 Z" stroke="#4a5568" stroke-width="1.5" fill="none"/>
-                                                </svg>
-                                                7
-                                            </span>
-                                        </div>
-                                    </div>
+                                    </button>
+                                    <button class="tab-btn">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                            <rect x="7" y="7" width="10" height="10" rx="5" stroke="#666" stroke-width="2"/>
+                                            <circle cx="16.5" cy="7.5" r="2.5" fill="#ff4444"/>
+                                        </svg>
+                                    </button>
+                                    <button class="tab-btn">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                            <circle cx="12" cy="8" r="4" stroke="#666" stroke-width="2"/>
+                                            <path d="M4 20 C4 16 8 12 12 12 S20 16 20 20" stroke="#666" stroke-width="2"/>
+                                        </svg>
+                                    </button>
                                 </div>
                             </div>
                         </div>
                         
-                        <div class="area-activity" id="areaActivity">
-                            <h3>North Dakota Hunting Units</h3>
-                            <div class="interactive-map" id="interactiveMap">
-                                <svg viewBox="0 0 400 250" class="map-svg">
+                        <!-- Area Discovery Map -->
+                        <div class="area-discovery">
+                            <div class="map-header">
+                                <h3>What's Happening Near You</h3>
+                                <button class="filter-btn">
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="white">
+                                        <path d="M2 4 L14 4 M4 8 L12 8 M6 12 L10 12" stroke="white" stroke-width="2"/>
+                                    </svg>
+                                    Filter
+                                </button>
+                            </div>
+                            
+                            <div class="discovery-map">
+                                <svg viewBox="0 0 400 300" class="nd-map">
                                     <defs>
-                                        <!-- Sophisticated gradient for terrain -->
-                                        <linearGradient id="terrain-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                                            <stop offset="0%" style="stop-color:#0a0e1a;stop-opacity:1" />
-                                            <stop offset="50%" style="stop-color:#0f1523;stop-opacity:1" />
-                                            <stop offset="100%" style="stop-color:#0a0e1a;stop-opacity:1" />
+                                        <linearGradient id="map-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                            <stop offset="0%" style="stop-color:#f8f9fa;stop-opacity:1" />
+                                            <stop offset="100%" style="stop-color:#e9ecef;stop-opacity:1" />
                                         </linearGradient>
-                                        
-                                        <!-- Heat map gradient -->
-                                        <radialGradient id="heat-gradient">
-                                            <stop offset="0%" style="stop-color:#0066FF;stop-opacity:0.6" />
-                                            <stop offset="40%" style="stop-color:#0066FF;stop-opacity:0.3" />
-                                            <stop offset="100%" style="stop-color:#0066FF;stop-opacity:0" />
-                                        </radialGradient>
-                                        
-                                        <filter id="blur">
-                                            <feGaussianBlur in="SourceGraphic" stdDeviation="3"/>
-                                        </filter>
-                                        
-                                        <filter id="glow">
-                                            <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
-                                            <feMerge>
-                                                <feMergeNode in="coloredBlur"/>
-                                                <feMergeNode in="SourceGraphic"/>
-                                            </feMerge>
+                                        <filter id="shadow">
+                                            <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.15"/>
                                         </filter>
                                     </defs>
                                     
-                                    <!-- Background -->
-                                    <rect width="400" height="250" fill="url(#terrain-gradient)"/>
+                                    <!-- ND Background -->
+                                    <path d="M 50 120 L 60 100 L 80 90 L 110 85 L 140 82 L 170 80 L 200 78 L 230 77 L 260 76 L 290 77 L 320 80 L 350 85 L 365 95 L 370 110 L 372 125 L 371 140 L 368 155 L 360 170 L 340 180 L 310 185 L 280 187 L 250 188 L 220 189 L 190 190 L 160 191 L 130 192 L 100 190 L 70 185 L 55 170 L 50 155 L 48 140 L 49 125 L 50 120 Z" 
+                                         fill="url(#map-gradient)" 
+                                         stroke="#dee2e6" 
+                                         stroke-width="2"
+                                         filter="url(#shadow)"/>
                                     
-                                    <!-- North Dakota outline (more accurate representation) -->
-                                    <path d="M 30 100 L 40 85 L 60 80 L 90 75 L 120 72 L 150 70 L 180 68 L 210 67 L 240 66 L 270 65 L 300 66 L 330 68 L 360 72 L 370 80 L 375 95 L 377 110 L 378 125 L 377 140 L 375 155 L 370 170 L 360 180 L 340 185 L 310 188 L 280 190 L 250 191 L 220 192 L 190 193 L 160 194 L 130 195 L 100 196 L 70 194 L 50 190 L 35 175 L 30 160 L 28 145 L 27 130 L 28 115 L 30 100 Z" 
-                                         fill="rgba(0,102,255,0.02)" 
-                                         stroke="rgba(255,255,255,0.15)" 
-                                         stroke-width="2"/>
-                                    
-                                    <!-- Grid lines for reference -->
-                                    <g opacity="0.1">
-                                        <line x1="0" y1="50" x2="400" y2="50" stroke="white" stroke-width="0.5"/>
-                                        <line x1="0" y1="100" x2="400" y2="100" stroke="white" stroke-width="0.5"/>
-                                        <line x1="0" y1="150" x2="400" y2="150" stroke="white" stroke-width="0.5"/>
-                                        <line x1="0" y1="200" x2="400" y2="200" stroke="white" stroke-width="0.5"/>
-                                        <line x1="100" y1="0" x2="100" y2="250" stroke="white" stroke-width="0.5"/>
-                                        <line x1="200" y1="0" x2="200" y2="250" stroke="white" stroke-width="0.5"/>
-                                        <line x1="300" y1="0" x2="300" y2="250" stroke="white" stroke-width="0.5"/>
-                                    </g>
-                                    
-                                    <!-- Hunting units with North Dakota-specific layout -->
-                                    <!-- Western Badlands units -->
-                                    <g class="hunting-unit" data-unit="1">
-                                        <path d="M 30 100 L 70 94 L 75 130 L 70 160 L 35 165 L 30 135 Z" 
-                                              fill="rgba(0,102,255,0.05)" 
-                                              stroke="rgba(255,255,255,0.2)" 
-                                              stroke-width="1.5"/>
-                                        <text x="52" y="130" class="unit-label">1</text>
-                                    </g>
-                                    
-                                    <g class="hunting-unit" data-unit="3A">
-                                        <path d="M 35 165 L 70 160 L 75 185 L 70 194 L 50 190 L 35 175 Z" 
-                                              fill="rgba(0,102,255,0.05)" 
-                                              stroke="rgba(255,255,255,0.2)" 
-                                              stroke-width="1.5"/>
-                                        <text x="55" y="178" class="unit-label">3A</text>
-                                    </g>
-                                    
-                                    <g class="hunting-unit" data-unit="3B">
-                                        <path d="M 70 160 L 110 155 L 115 185 L 110 195 L 70 194 L 75 185 Z" 
-                                              fill="rgba(0,102,255,0.05)" 
-                                              stroke="rgba(255,255,255,0.2)" 
-                                              stroke-width="1.5"/>
-                                        <text x="92" y="178" class="unit-label">3B</text>
-                                    </g>
-                                    
-                                    <!-- Central units -->
-                                    <g class="hunting-unit" data-unit="2A">
-                                        <path d="M 120 72 L 180 68 L 185 100 L 180 130 L 125 135 L 120 105 Z" 
-                                              fill="rgba(0,102,255,0.05)" 
-                                              stroke="rgba(255,255,255,0.2)" 
-                                              stroke-width="1.5"/>
-                                        <text x="152" y="105" class="unit-label">2A</text>
-                                    </g>
-                                    
-                                    <g class="hunting-unit" data-unit="2B">
-                                        <path d="M 180 68 L 240 66 L 245 100 L 240 130 L 185 130 L 180 100 Z" 
-                                              fill="rgba(0,102,255,0.05)" 
-                                              stroke="rgba(255,255,255,0.2)" 
-                                              stroke-width="1.5"/>
-                                        <text x="212" y="100" class="unit-label">2B</text>
-                                    </g>
-                                    
-                                    <!-- Eastern units -->
-                                    <g class="hunting-unit" data-unit="2G">
-                                        <path d="M 300 66 L 360 72 L 365 105 L 360 135 L 305 130 L 300 100 Z" 
-                                              fill="rgba(0,102,255,0.05)" 
-                                              stroke="rgba(255,255,255,0.2)" 
-                                              stroke-width="1.5"/>
-                                        <text x="332" y="105" class="unit-label">2G</text>
-                                    </g>
-                                    
-                                    <!-- Activity indicators with realistic data -->
-                                    <g class="activity-layer">
-                                        <!-- Heat zones -->
-                                        <ellipse cx="152" cy="105" rx="40" ry="30" fill="url(#heat-gradient)" opacity="0.7"/>
-                                        <ellipse cx="92" cy="178" rx="30" ry="20" fill="url(#heat-gradient)" opacity="0.5"/>
-                                        <ellipse cx="332" cy="105" rx="35" ry="25" fill="url(#heat-gradient)" opacity="0.6"/>
+                                    <!-- Unit Boundaries -->
+                                    <g class="unit-boundaries">
+                                        <path d="M 50 120 L 90 110 L 95 145 L 90 175 L 55 180 L 50 150 Z" 
+                                              fill="none" 
+                                              stroke="#adb5bd" 
+                                              stroke-width="1"
+                                              stroke-dasharray="3,2"/>
+                                        <text x="72" y="150" class="unit-name">1</text>
                                         
-                                        <!-- Activity pulses -->
-                                        <circle cx="152" cy="105" r="4" fill="#0066FF" class="pulse-point">
-                                            <animate attributeName="r" values="4;8;4" dur="3s" repeatCount="indefinite"/>
-                                            <animate attributeName="opacity" values="1;0.3;1" dur="3s" repeatCount="indefinite"/>
-                                        </circle>
-                                        <circle cx="212" cy="100" r="3" fill="#0066FF" class="pulse-point">
-                                            <animate attributeName="r" values="3;6;3" dur="3.5s" repeatCount="indefinite"/>
-                                            <animate attributeName="opacity" values="1;0.3;1" dur="3.5s" repeatCount="indefinite"/>
-                                        </circle>
-                                        <circle cx="92" cy="178" r="3" fill="#0066FF" class="pulse-point">
-                                            <animate attributeName="r" values="3;6;3" dur="4s" repeatCount="indefinite"/>
-                                            <animate attributeName="opacity" values="1;0.3;1" dur="4s" repeatCount="indefinite"/>
-                                        </circle>
+                                        <path d="M 140 82 L 200 78 L 205 110 L 200 140 L 145 145 L 140 115 Z" 
+                                              fill="none" 
+                                              stroke="#adb5bd" 
+                                              stroke-width="1"
+                                              stroke-dasharray="3,2"/>
+                                        <text x="172" y="115" class="unit-name">2A</text>
+                                        
+                                        <path d="M 200 78 L 260 76 L 265 110 L 260 140 L 205 140 L 200 110 Z" 
+                                              fill="none" 
+                                              stroke="#adb5bd" 
+                                              stroke-width="1"
+                                              stroke-dasharray="3,2"/>
+                                        <text x="232" y="110" class="unit-name">2B</text>
+                                        
+                                        <path d="M 90 145 L 130 140 L 135 170 L 130 190 L 90 192 L 95 175 Z" 
+                                              fill="none" 
+                                              stroke="#adb5bd" 
+                                              stroke-width="1"
+                                              stroke-dasharray="3,2"/>
+                                        <text x="112" y="170" class="unit-name">3B</text>
+                                    </g>
+                                    
+                                    <!-- Activity Markers -->
+                                    <g class="activity-markers">
+                                        <!-- Hunter activity pins -->
+                                        <g class="activity-pin" transform="translate(172, 115)">
+                                            <circle r="12" fill="#0066FF" opacity="0.2" class="pulse"/>
+                                            <circle r="8" fill="#0066FF"/>
+                                            <text y="-15" text-anchor="middle" class="activity-count">23</text>
+                                        </g>
+                                        
+                                        <g class="activity-pin" transform="translate(232, 110)">
+                                            <circle r="10" fill="#0066FF" opacity="0.2" class="pulse"/>
+                                            <circle r="6" fill="#0066FF"/>
+                                            <text y="-13" text-anchor="middle" class="activity-count">17</text>
+                                        </g>
+                                        
+                                        <g class="activity-pin" transform="translate(112, 170)">
+                                            <circle r="14" fill="#0066FF" opacity="0.2" class="pulse"/>
+                                            <circle r="10" fill="#0066FF"/>
+                                            <text y="-17" text-anchor="middle" class="activity-count">31</text>
+                                        </g>
+                                        
+                                        <g class="activity-pin" transform="translate(72, 150)">
+                                            <circle r="8" fill="#0066FF" opacity="0.2" class="pulse"/>
+                                            <circle r="5" fill="#0066FF"/>
+                                            <text y="-11" text-anchor="middle" class="activity-count">8</text>
+                                        </g>
+                                    </g>
+                                    
+                                    <!-- Recent photo indicators -->
+                                    <g class="photo-indicators">
+                                        <g transform="translate(185, 125)">
+                                            <rect x="-8" y="-8" width="16" height="16" rx="2" fill="white" stroke="#0066FF" stroke-width="2"/>
+                                            <path d="M-4 -2 L0 2 L4 -4" fill="none" stroke="#0066FF" stroke-width="1.5"/>
+                                        </g>
+                                        
+                                        <g transform="translate(245, 120)">
+                                            <rect x="-8" y="-8" width="16" height="16" rx="2" fill="white" stroke="#0066FF" stroke-width="2"/>
+                                            <path d="M-4 -2 L0 2 L4 -4" fill="none" stroke="#0066FF" stroke-width="1.5"/>
+                                        </g>
                                     </g>
                                 </svg>
                                 
-                                <!-- Professional data overlay -->
-                                <div class="map-data-overlay">
-                                    <div class="data-panel top-panel">
-                                        <div class="metric-row">
-                                            <div class="metric">
-                                                <span class="metric-value">247</span>
-                                                <span class="metric-label">Active Hunters</span>
-                                            </div>
-                                            <div class="metric">
-                                                <span class="metric-value">1.8K</span>
-                                                <span class="metric-label">Photos This Week</span>
-                                            </div>
-                                        </div>
+                                <div class="map-stats">
+                                    <div class="stat-card">
+                                        <span class="stat-number">79</span>
+                                        <span class="stat-label">Active Hunters</span>
                                     </div>
-                                    
-                                    <div class="unit-info-panel" id="unitInfoPanel">
-                                        <h4>Unit 2A - Central Plains</h4>
-                                        <div class="unit-metrics">
-                                            <div class="metric-item">
-                                                <span class="label">Activity Level</span>
-                                                <div class="activity-bar">
-                                                    <div class="activity-fill" style="width: 75%"></div>
-                                                </div>
-                                            </div>
-                                            <div class="metric-item">
-                                                <span class="label">Photos Today</span>
-                                                <span class="value">34</span>
-                                            </div>
-                                            <div class="metric-item">
-                                                <span class="label">Peak Hours</span>
-                                                <span class="value">5-7 AM</span>
-                                            </div>
-                                        </div>
+                                    <div class="stat-card">
+                                        <span class="stat-number">241</span>
+                                        <span class="stat-label">Photos Today</span>
                                     </div>
-                                </div>
-                            </div>
-                            
-                            <div class="map-legend">
-                                <div class="legend-item">
-                                    <div class="legend-icon" style="background: #0066FF; opacity: 0.6;"></div>
-                                    <span>High Activity</span>
-                                </div>
-                                <div class="legend-item">
-                                    <div class="legend-icon" style="background: #0066FF; opacity: 0.3;"></div>
-                                    <span>Moderate Activity</span>
-                                </div>
-                                <div class="legend-item">
-                                    <div class="legend-icon pulse-icon"></div>
-                                    <span>Recent Photos</span>
+                                    <div class="stat-card hot">
+                                        <span class="stat-number">Unit 3B</span>
+                                        <span class="stat-label">Hottest Area</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     
-                    <div class="demo-trigger">
-                        <button class="demo-button" id="demoButton">
-                            <span>Join Your Hunting Community</span>
-                            <div class="button-glow"></div>
-                        </button>
+                    <div class="social-proof">
+                        <div class="community-stats">
+                            <div class="stat">
+                                <strong>2,847</strong>
+                                <span>Active Hunters</span>
+                            </div>
+                            <div class="stat">
+                                <strong>127</strong>
+                                <span>ND Units Covered</span>
+                            </div>
+                            <div class="stat">
+                                <strong>14.2K</strong>
+                                <span>Photos Shared</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </header>
 
-    <main class="applications">
+    <main class="features-section">
         <div class="container">
-            <div class="cta-section" id="ctaSection">
-                <div class="cta-card">
-                    <h3>Join the Hunting Community</h3>
-                    <p>Connect with hunters in your area, share your success, and discover where the action is happening</p>
-                    <a href="https://rackmap.thingvalla.tech" class="cta-button" target="_blank">
-                        <span>Start Connecting</span>
-                        <div class="button-triangles">
-                            <div class="triangle triangle-1"></div>
-                            <div class="triangle triangle-2"></div>
-                        </div>
-                    </a>
+            <h2>Everything You Need to Connect with Hunters</h2>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon social">
+                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                            <circle cx="24" cy="14" r="6" stroke="#0066FF" stroke-width="3"/>
+                            <path d="M8 34 C8 26 15 20 24 20 S40 26 40 34" stroke="#0066FF" stroke-width="3"/>
+                            <circle cx="16" cy="36" r="3" fill="#0066FF"/>
+                            <circle cx="32" cy="36" r="3" fill="#0066FF"/>
+                        </svg>
+                    </div>
+                    <h3>Share Your Success</h3>
+                    <p>Upload hunting photos instantly and share them with your hunting network. Tag your location and connect with hunters in your area.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon discover">
+                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                            <path d="M24 4 C16 4 10 10 10 18 C10 28 24 44 24 44 S38 28 38 18 C38 10 32 4 24 4 Z" stroke="#0066FF" stroke-width="3"/>
+                            <circle cx="24" cy="18" r="4" stroke="#0066FF" stroke-width="2"/>
+                            <circle cx="18" cy="12" r="2" fill="#ff4444"/>
+                            <circle cx="30" cy="14" r="2" fill="#ff4444"/>
+                        </svg>
+                    </div>
+                    <h3>Discover Area Activity</h3>
+                    <p>See what other hunters are catching in your hunting units. Real-time activity shows you where the action is happening.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon network">
+                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                            <circle cx="14" cy="14" r="4" stroke="#0066FF" stroke-width="2"/>
+                            <circle cx="34" cy="14" r="4" stroke="#0066FF" stroke-width="2"/>
+                            <circle cx="24" cy="34" r="4" stroke="#0066FF" stroke-width="2"/>
+                            <path d="M18 14 L30 14 M18 17 L21 30 M30 17 L27 30" stroke="#0066FF" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <h3>Build Your Network</h3>
+                    <p>Follow your hunting buddies and discover new hunters in your area. Build connections that last beyond hunting season.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon intelligence">
+                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                            <rect x="8" y="12" width="32" height="24" rx="2" stroke="#0066FF" stroke-width="3"/>
+                            <path d="M14 20 L20 26 L28 18" stroke="#0066FF" stroke-width="2" fill="none"/>
+                            <circle cx="38" cy="10" r="4" fill="#ff4444"/>
+                        </svg>
+                    </div>
+                    <h3>Get Area Intelligence</h3>
+                    <p>Access community-driven data about hunting unit productivity, peak times, and successful hunting strategies.</p>
+                </div>
+            </div>
+            
+            <div class="cta-section">
+                <div class="main-cta">
+                    <h2>Ready to Join Your Hunting Community?</h2>
+                    <p>Connect with thousands of hunters, share your catches, and discover the best spots in your area.</p>
+                    <div class="cta-buttons">
+                        <a href="https://rackmap.thingvalla.tech" class="primary-cta" target="_blank">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="white">
+                                <path d="M10 2 C8 2 6 4 6 6 C6 10 10 14 10 14 S14 10 14 6 C14 4 12 2 10 2 Z M10 8 C9 8 8 7 8 6 S9 4 10 4 S12 5 12 6 S11 8 10 8 Z"/>
+                            </svg>
+                            Explore Your Area
+                        </a>
+                        <button class="secondary-cta" id="sharePhotoDemo">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="#0066FF">
+                                <path d="M10 12 C11.5 12 13 10.5 13 9 S11.5 6 10 6 S7 7.5 7 9 S8.5 12 10 12 Z"/>
+                                <path d="M17 5 L15 3 L13 3 L11 1 L9 1 L7 3 L5 3 L3 5 L3 15 C3 16 4 17 5 17 L15 17 C16 17 17 16 17 15 L17 5 Z M10 14 C7.5 14 5 11.5 5 9 S7.5 4 10 4 S15 6.5 15 9 S12.5 14 10 14 Z"/>
+                            </svg>
+                            Try Photo Sharing
+                        </button>
+                    </div>
+                    
+                    <div class="beta-notice">
+                        <p>🎯 Currently focused on North Dakota hunters • Expanding to more states soon</p>
+                    </div>
                 </div>
             </div>
         </div>
