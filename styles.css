@@ -62,16 +62,87 @@ body {
     margin: 0 auto 2rem;
 }
 
-.hero-gif {
+.hero-game {
     margin-top: 2rem;
 }
 
-.gif-animation {
+.game-container {
     width: 120px;
     height: 120px;
+    position: relative;
+    margin: 0 auto;
+    background: rgba(0, 0, 0, 0.2);
     border-radius: 10px;
-    opacity: 0.9;
     border: 2px solid rgba(255, 255, 255, 0.3);
+    overflow: hidden;
+}
+
+.spaceship {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #00ff00;
+    font-size: 16px;
+    animation: spaceship-move 3s infinite ease-in-out;
+}
+
+.bullet {
+    position: absolute;
+    color: #ffff00;
+    font-size: 8px;
+    animation: bullet-shoot 2s infinite linear;
+}
+
+.bullet1 {
+    left: 30%;
+    animation-delay: 0s;
+}
+
+.bullet2 {
+    left: 70%;
+    animation-delay: 1s;
+}
+
+.alien {
+    position: absolute;
+    font-size: 12px;
+    animation: alien-move 4s infinite ease-in-out;
+}
+
+.alien1 {
+    top: 20px;
+    left: 20px;
+    animation-delay: 0s;
+}
+
+.alien2 {
+    top: 20px;
+    left: 50px;
+    animation-delay: 0.5s;
+}
+
+.alien3 {
+    top: 20px;
+    left: 80px;
+    animation-delay: 1s;
+}
+
+@keyframes spaceship-move {
+    0%, 100% { left: 30%; }
+    50% { left: 70%; }
+}
+
+@keyframes bullet-shoot {
+    0% { bottom: 25px; opacity: 1; }
+    100% { bottom: 100px; opacity: 0; }
+}
+
+@keyframes alien-move {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(10px); }
+    50% { transform: translateX(0); }
+    75% { transform: translateX(-10px); }
 }
 
 .applications {
