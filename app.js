@@ -126,7 +126,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }, 3000);
     
     // Add some dynamic content rotation
-    const hunterNames = ['Jake M.', 'Sarah K.', 'Mike R.', 'Alex T.', 'Dana P.', 'Chris L.'];
+    const hunterNames = ['BuckHunter47', 'OutdoorQueen', 'TrailWatcher', 'WoodsStalker', 'DeerSlayer99', 'FieldMaster', 'CamoKing', 'WildTracker', 'HuntingPro'];
     const huntUnits = ['Unit 3B2', 'Unit 2K1', 'Unit 1A1', 'Unit 4C3', 'Unit 2A4', 'Unit 3K1'];
     const timeStamps = ['2 hours ago', '5 hours ago', '1 day ago', '3 hours ago', '6 hours ago', '2 days ago'];
     
