@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     function animateNumber() {
         const scoreNumber = document.querySelector('.score-number');
-        const targetScore = 158;
+        const targetScore = 148;
         let currentScore = 0;
         const increment = targetScore / 20;
         
@@ -92,7 +92,7 @@ document.addEventListener('DOMContentLoaded', function() {
         isAnimating = false;
         
         // Reset score number
-        document.querySelector('.score-number').textContent = '158';
+        document.querySelector('.score-number').textContent = '148';
     }
     
     // Click handler
